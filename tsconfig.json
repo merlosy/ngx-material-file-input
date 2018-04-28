@@ -16,7 +16,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "material-file-input": [
+      "ngx-material-file-input": [
         "libs/material-file-input"
       ]
     }

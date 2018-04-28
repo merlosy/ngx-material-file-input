@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialFileInputModule } from 'material-file-input';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {

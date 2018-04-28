@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { MaterialFileInputModule } from 'material-file-input';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   imports: [

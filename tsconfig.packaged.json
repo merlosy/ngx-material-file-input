@@ -2,8 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "material-file-input": [
-        "libs/material-file-input/dist/material-file-input"
+      "ngx-material-file-input": [
+        "dist/material-file-input"
       ]
     }
   }

@@ -1,5 +1,4 @@
 {
-  "$schema": "./../../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-material-file-input",
   "version": "0.0.0",
   "license": "MIT",
@@ -13,6 +12,7 @@
   "ngPackage": {
     "lib": {
       "entryFile": "public_api.ts"
-    }
+    },
+    "dest": "../../dist/material-file-input"
   }
 }

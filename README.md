@@ -3,7 +3,7 @@
 # material-file-input
 File input for Angular Material form-field
 ```
-npm i -D material-file-input
+npm i ngx-material-file-input
 ```
 
 # Inspired by
