@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  Angular Material - File Input
+</mat-toolbar>
+
+<div style="padding: 7px">
+
+  <form [formGroup]="formDoc" (ngSubmit)="onSubmit()" novalidate>
+
+    <mat-form-field>
+      <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input" ></ngx-mat-file-input>
+      <mat-icon matSuffix>folder</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected" required></ngx-mat-file-input>
+      <mat-icon matSuffix>folder</mat-icon>
+      <mat-error *ngIf="formDoc.get('requiredfile').hasError('required')">
+        Please select a file
+      </mat-error>
+      <mat-error *ngIf="formDoc.get('requiredfile').hasError('maxContentSize')">
+        The total size must not exceed {{formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}}
+        ({{formDoc.get('requiredfile')?.getError('maxContentSize').actualSize | byteFormat}}).
+      </mat-error>
+    </mat-form-field>
+    <pre>{{formDoc.get('requiredfile').errors | json}}</pre>
+
+    <mat-form-field>
+      <ngx-mat-file-input formControlName="disabledfile" placeholder="Disabled Input" ></ngx-mat-file-input>
+      <mat-icon matSuffix>folder</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <ngx-mat-file-input formControlName="multiplefile" placeholder="Multiple inputs" multiple></ngx-mat-file-input>
+      <mat-icon matSuffix>folder</mat-icon>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="formDoc.invalid" mat-raised-button>Submit</button>
+
+  </form>
+
+</div>

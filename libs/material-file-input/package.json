@@ -1,0 +1,18 @@
+{
+  "name": "ngx-material-file-input",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "peerDependencies": {
+    "@angular/common": "^5.1.0",
+    "@angular/core": "^5.1.0",
+    "@angular/material": "^5.1.0",
+    "@angular/cdk": "^5.1.0"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../dist/material-file-input"
+  }
+}
