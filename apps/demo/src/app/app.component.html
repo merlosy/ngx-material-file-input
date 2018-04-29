@@ -7,12 +7,12 @@
   <form [formGroup]="formDoc" (ngSubmit)="onSubmit()" novalidate>
 
     <mat-form-field>
-      <app-file-input formControlName="basicfile" placeholder="Basic Input" ></app-file-input>
+      <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input" ></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
 
     <mat-form-field>
-      <app-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected" required></app-file-input>
+      <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected" required></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
       <mat-error *ngIf="formDoc.get('requiredfile').hasError('required')">
         Please select a file
@@ -25,12 +25,12 @@
     <pre>{{formDoc.get('requiredfile').errors | json}}</pre>
 
     <mat-form-field>
-      <app-file-input formControlName="disabledfile" placeholder="Disabled Input" ></app-file-input>
+      <ngx-mat-file-input formControlName="disabledfile" placeholder="Disabled Input" ></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
 
     <mat-form-field>
-      <app-file-input formControlName="multiplefile" placeholder="Multiple inputs" multiple></app-file-input>
+      <ngx-mat-file-input formControlName="multiplefile" placeholder="Multiple inputs" multiple></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
 

@@ -86,6 +86,7 @@
       "name": "material-file-input",
       "root": "libs/material-file-input/src",
       "test": "../../../test.js",
+      "prefix": "ngx-mat",
       "appRoot": "",
       "tags": []
     },

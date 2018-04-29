@@ -8,7 +8,8 @@ import { Subject } from 'rxjs/Subject';
 import { FileInput } from '../model/file-input.model';
 
 @Component({
-  selector: 'app-file-input',
+  // tslint:disable-next-line:component-selector
+  selector: 'ngx-mat-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.css'],
   providers: [
@@ -29,7 +30,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   @Input() valuePlaceholder: string;
   @Input() multiple: boolean;
 
-  @HostBinding() id = `app-file-input-${FileInputComponent.nextId++}`;
+  @HostBinding() id = `ngx-mat-file-input-${FileInputComponent.nextId++}`;
   @HostBinding('attr.aria-describedby') describedBy = '';
 
   @Input() get value(): FileInput | null {
