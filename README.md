@@ -1,17 +1,19 @@
-[![Build Status](https://travis-ci.com/merlosy/ngx-material-file-input.svg?token=i5F9rkH7xgZiP4BSaCd6&branch=master)](https://travis-ci.com/merlosy/ngx-material-file-input)
+[![Build Status](https://travis-ci.org/merlosy/ngx-material-file-input.svg?branch=master)](https://travis-ci.org/merlosy/ngx-material-file-input)
 
 # material-file-input
 
 This project provides :
-- `ngx-mat-file-input` component, to use inside Angular Material `mat-form-field`
-- a `FileValidator` with `maxContentSize`, to limit the file size
-- a `ByteFormatPipe` to format the file size in a human-readable format
+
+* `ngx-mat-file-input` component, to use inside Angular Material `mat-form-field`
+* a `FileValidator` with `maxContentSize`, to limit the file size
+* a `ByteFormatPipe` to format the file size in a human-readable format
 
 For more, have a look at the [DEMO SITE](https://merlosy.github.io/ngx-material-file-input)
 
 ## Install
 
 File input for Angular Material form-field
+
 ```
 npm i ngx-material-file-input
 ```
@@ -42,7 +44,7 @@ Fully-featured component :
 </mat-form-field>
 ```
 
-
 # Kudos to
-- https://github.com/dherges/ng-packagr
-- Jason Aden - Packaging Angular Libraries https://www.youtube.com/watch?v=QfvwQEJVOig
+
+* https://github.com/dherges/ng-packagr
+* Jason Aden - Packaging Angular Libraries https://www.youtube.com/watch?v=QfvwQEJVOig
