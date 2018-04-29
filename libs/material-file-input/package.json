@@ -1,8 +1,7 @@
 {
   "name": "ngx-material-file-input",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
-  "private": true,
   "peerDependencies": {
     "@angular/common": "^5.1.0",
     "@angular/core": "^5.1.0",
