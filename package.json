@@ -5,8 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "clean": "rm -rf dist",
     "build": "ng build",
-    "build:lib": "ng-packagr -p libs/material-file-input/package.json",
+    "build:lib": "ng-packagr -p libs/material-file-input/package.json && cp README.md dist/material-file-input",
     "test": "ng test",
     "test:once": "ng test --single-run",
     "lint": "./node_modules/.bin/nx lint && ng lint",
