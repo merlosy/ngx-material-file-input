@@ -18,9 +18,27 @@ File input for Angular Material form-field
 npm i ngx-material-file-input
 ```
 
-## Use
+## API reference
 
-Minimal component :
+```ts
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+```
+
+### NgxMatFormField
+
+selector: `<ngx-mat-file-input>`
+
+extends: [MatFormFieldControl](https://material.angular.io/components/form-field/api#MatFormFieldControl) from Angular Material
+
+**Additionnal properties**
+
+| Name                                  | Description                 |
+| ------------------------------------- | --------------------------- |
+| _@Input()_ valuePlaceholder: `string` | Placeholder for file names  |
+| _@Input()_ multiple: `boolean`        | Allows multiple file inputs |
+| value: `FileInput`                    | Allows multiple file inputs |
+
+Standard use:
 
 ```html
 <mat-form-field>
@@ -43,6 +61,34 @@ Fully-featured component :
   </mat-error>
 </mat-form-field>
 ```
+
+### ByteFormatPipe
+
+**Example**
+
+```html
+<span>{{ 104857600 | byteFormat }}</span>
+```
+
+_Output:_ 100 MB
+
+### FileValidator
+
+| Name                                           | Description                                     |
+| ---------------------------------------------- | ----------------------------------------------- |
+| maxContentSize(value: `number`): `ValidatorFn` | Limit the total file(s) size to the given value |
+
+# About me
+
+[@jereyleg](https://twitter.com/jereyleg)
+
+&star; to show support :)
+
+# Roadmap
+
+* support "accept" type of file
+* drop event to add files
+* _ideas?_
 
 # Kudos to
 
