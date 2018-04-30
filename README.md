@@ -36,7 +36,7 @@ extends: [MatFormFieldControl](https://material.angular.io/components/form-field
 | ------------------------------------- | --------------------------- |
 | _@Input()_ valuePlaceholder: `string` | Placeholder for file names  |
 | _@Input()_ multiple: `boolean`        | Allows multiple file inputs |
-| value: `FileInput`                    | Allows multiple file inputs |
+| value: `FileInput`                    | form control value          |
 
 Standard use:
 
@@ -74,9 +74,9 @@ _Output:_ 100 MB
 
 ### FileValidator
 
-| Name                                           | Description                                     |
-| ---------------------------------------------- | ----------------------------------------------- |
-| maxContentSize(value: `number`): `ValidatorFn` | Limit the total file(s) size to the given value |
+| Name                                           | Description                                     | Error structure                           |
+| ---------------------------------------------- | ----------------------------------------------- | ----------------------------------------- |
+| maxContentSize(value: `number`): `ValidatorFn` | Limit the total file(s) size to the given value | `{ actualSize: number, maxSize: number }` |
 
 # About me
 
