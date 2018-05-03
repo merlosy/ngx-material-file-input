@@ -24,11 +24,24 @@ npm i ngx-material-file-input
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 ```
 
+#### optional NGX_MAT_FILE_INPUT_CONFIG token:
+
+Change the unit of the ByteFormat pipe
+
+```ts
+export const config: FileInputConfig = {
+  sizeUnit: 'Octet'
+};
+
+// add with module injection
+providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }];
+```
+
 ### NgxMatFormField
 
 selector: `<ngx-mat-file-input>`
 
-extends: [MatFormFieldControl](https://material.angular.io/components/form-field/api#MatFormFieldControl) from Angular Material
+implements: [MatFormFieldControl](https://material.angular.io/components/form-field/api#MatFormFieldControl)<FileInput> from Angular Material
 
 **Additionnal properties**
 
