@@ -107,6 +107,27 @@ describe('FileInputComponent', () => {
     expect(component.disabled).toBeTruthy();
   });
 
+  it('should propagate onContainerClick()', () => {
+    spyOn(component, 'open').and.stub();
+    component.onContainerClick({
+      target: {
+        tagName: 'not-input'
+      } as Partial<Element>
+    } as MouseEvent);
+    expect(component.open).toHaveBeenCalled();
+  });
+
+  it('should not propagate onContainerClick(), when disabled', () => {
+    spyOn(component, 'open').and.stub();
+    component.disabled = true;
+    component.onContainerClick({
+      target: {
+        tagName: 'not-input'
+      } as Partial<Element>
+    } as MouseEvent);
+    expect(component.open).not.toHaveBeenCalled();
+  });
+
   xit('should propagate click', () => {
     spyOn(component, 'open').and.stub();
     fixture.debugElement.nativeElement.click();

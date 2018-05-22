@@ -9,6 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { AppComponent } from './app.component';
+import { CodeSampleComponent } from './code-sample/code-sample.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -17,7 +18,7 @@ describe('AppComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [AppComponent],
+        declarations: [AppComponent, CodeSampleComponent],
         imports: [
           ReactiveFormsModule,
           NoopAnimationsModule,

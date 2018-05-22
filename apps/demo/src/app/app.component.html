@@ -2,14 +2,25 @@
   Angular Material - File Input
 </mat-toolbar>
 
-<div style="padding: 7px">
+<div class="main">
+
+  <h1>Code samples</h1>
 
   <form [formGroup]="formDoc" (ngSubmit)="onSubmit()" novalidate>
 
+    <h2>Simple input</h2>
+
+    <app-code-sample [code]="simple"></app-code-sample>
+
     <mat-form-field>
-      <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input" ></ngx-mat-file-input>
+      <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input"></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
+
+    <h2>Input with validation: required and maxSize</h2>
+
+    <app-code-sample [code]="advancedTs"></app-code-sample>
+    <app-code-sample [code]="advanced"></app-code-sample>
 
     <mat-form-field>
       <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected" required></ngx-mat-file-input>
@@ -18,23 +29,35 @@
         Please select a file
       </mat-error>
       <mat-error *ngIf="formDoc.get('requiredfile').hasError('maxContentSize')">
-        The total size must not exceed {{formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}}
-        ({{formDoc.get('requiredfile')?.getError('maxContentSize').actualSize | byteFormat}}).
+        The total size must not exceed {{formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}} ({{formDoc.get('requiredfile')?.getError('maxContentSize').actualSize
+        | byteFormat}}).
       </mat-error>
     </mat-form-field>
     <pre>{{formDoc.get('requiredfile').errors | json}}</pre>
 
+    <h2>Disabled input</h2>
+
+    <app-code-sample [code]="disabledTs"></app-code-sample>
+
     <mat-form-field>
-      <ngx-mat-file-input formControlName="disabledfile" placeholder="Disabled Input" ></ngx-mat-file-input>
+      <ngx-mat-file-input formControlName="disabledfile" placeholder="Disabled Input"></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
+
+    <h2>Multiple input</h2>
+
+    <app-code-sample [code]="multiple"></app-code-sample>
 
     <mat-form-field>
       <ngx-mat-file-input formControlName="multiplefile" placeholder="Multiple inputs" multiple></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
 
-    <button type="submit" [disabled]="formDoc.invalid" mat-raised-button>Submit</button>
+    <h2>ByteFormat pipe</h2>
+
+    <app-code-sample [code]="bytePipe"></app-code-sample>
+
+    <p>A file size of {{ maxSize }} gives a human readable size of {{ maxSize | byteFormat }}</p>
 
   </form>
 
