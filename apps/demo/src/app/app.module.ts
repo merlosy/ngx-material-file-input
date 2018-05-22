@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { CodeSampleComponent } from './code-sample/code-sample.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     // Lib Module
     MaterialFileInputModule
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, CodeSampleComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

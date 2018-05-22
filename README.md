@@ -8,7 +8,7 @@ This project provides :
 * a `FileValidator` with `maxContentSize`, to limit the file size
 * a `ByteFormatPipe` to format the file size in a human-readable format
 
-For more, have a look at the [DEMO SITE](https://merlosy.github.io/ngx-material-file-input)
+For more code samples, have a look at the [DEMO SITE](https://merlosy.github.io/ngx-material-file-input)
 
 ## Install
 
@@ -50,30 +50,6 @@ implements: [MatFormFieldControl](https://material.angular.io/components/form-fi
 | _@Input()_ valuePlaceholder: `string` | Placeholder for file names  |
 | _@Input()_ multiple: `boolean`        | Allows multiple file inputs |
 | value: `FileInput`                    | form control value          |
-
-Standard use:
-
-```html
-<mat-form-field>
-  <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input" ></ngx-mat-file-input>
-</mat-form-field>
-```
-
-Fully-featured component :
-
-```html
-<mat-form-field>
-  <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected" required multiple></ngx-mat-file-input>
-  <mat-icon matSuffix>folder</mat-icon>
-  <mat-error *ngIf="formDoc.get('requiredfile').hasError('required')">
-    Please select a file
-  </mat-error>
-  <mat-error *ngIf="formDoc.get('requiredfile').hasError('maxContentSize')">
-    The total size must not exceed {{ formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat }}
-    ({{ formDoc.get('requiredfile')?.getError('maxContentSize').actualSize | byteFormat }})
-  </mat-error>
-</mat-form-field>
-```
 
 ### ByteFormatPipe
 
