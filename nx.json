@@ -1,0 +1,20 @@
+{
+  "npmScope": "material-file-input",
+  "projects": {
+    "demo": {
+      "tags": []
+    },
+    "demo-e2e": {
+      "tags": []
+    },
+    "demo-packaged": {
+      "tags": []
+    },
+    "demo-packaged-e2e": {
+      "tags": []
+    },
+    "material-file-input": {
+      "tags": []
+    }
+  }
+}
