@@ -8,14 +8,12 @@ import {
   MatInputModule,
   MatButtonModule,
   MatIconModule,
-  MatFormFieldModule,
-  MatFormField
+  MatFormFieldModule
 } from '@angular/material';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FileInputComponent } from './file-input.component';
 import { FileInput } from '../../public_api';
-import { By } from '@angular/platform-browser';
 
 // function createComponent<T>(component: Type<T>,
 //   providers: Provider[] = [],
