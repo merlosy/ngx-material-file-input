@@ -45,11 +45,12 @@ implements: [MatFormFieldControl](https://material.angular.io/components/form-fi
 
 **Additionnal properties**
 
-| Name                                  | Description                 |
-| ------------------------------------- | --------------------------- |
-| _@Input()_ valuePlaceholder: `string` | Placeholder for file names  |
-| _@Input()_ multiple: `boolean`        | Allows multiple file inputs |
-| value: `FileInput`                    | form control value          |
+| Name                                  | Description                                                                                                                 |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| _@Input()_ valuePlaceholder: `string` | Placeholder for file names, empty by default                                                                                |
+| _@Input()_ multiple: `boolean`        | Allows multiple file inputs, `false` by default                                                                             |
+| _@Input()_ autofilled: `boolean`      | Whether the input is currently in an autofilled state. If property is not present on the control it is assumed to be false. |
+| value: `FileInput`                    | form control value                                                                                                          |
 
 ### ByteFormatPipe
 
