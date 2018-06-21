@@ -6,9 +6,7 @@
     "name": "Jeremy Legros"
   },
   "homepage": "https://merlosy.github.io/ngx-material-file-input/",
-  "keywords": [
-    "angular", "material", "file", "input", "mat-form-field"
-  ],
+  "keywords": ["angular", "material", "file", "input", "mat-form-field"],
   "bugs": {
     "url": "https://github.com/merlosy/ngx-material-file-input/issues"
   },
@@ -17,10 +15,10 @@
     "url": "https://github.com/merlosy/ngx-material-file-input"
   },
   "peerDependencies": {
-    "@angular/common": "^5.0.0",
-    "@angular/core": "^5.0.0",
-    "@angular/material": "^5.0.0",
-    "@angular/cdk": "^5.0.0"
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/material": "^6.0.0",
+    "@angular/cdk": "^6.0.0"
   },
   "ngPackage": {
     "lib": {

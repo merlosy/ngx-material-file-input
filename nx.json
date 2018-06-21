@@ -1,5 +1,12 @@
 {
   "npmScope": "material-file-input",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
   "projects": {
     "demo": {
       "tags": []
@@ -8,9 +15,6 @@
       "tags": []
     },
     "demo-packaged": {
-      "tags": []
-    },
-    "demo-packaged-e2e": {
       "tags": []
     },
     "material-file-input": {

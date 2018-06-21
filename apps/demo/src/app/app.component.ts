@@ -18,14 +18,13 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.formDoc = this._fb.group({
       basicfile: [],
-      requiredfile: [
-        { value: undefined, disabled: false },
-        [Validators.required, FileValidator.maxContentSize(this.maxSize)]
-      ],
+      requiredfile: [{ value: undefined, disabled: false }, [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
       disabledfile: [{ value: undefined, disabled: true }],
       multiplefile: [{ value: undefined, disabled: false }]
     });
   }
+
+  onSubmit(form: FormGroup) {}
 
   get simple() {
     return `<mat-form-field>

@@ -20,7 +20,8 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   stateChanges = new Subject<void>();
   focused = false;
   controlType = 'file-input';
-  autofilled?: boolean;
+
+  @Input() autofilled: boolean = false;
 
   private _placeholder: string;
   private _required = false;
