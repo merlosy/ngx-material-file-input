@@ -113,7 +113,7 @@
             "outputPath": "dist/apps/demo-packaged",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
-            "tsConfig": "apps/demo/src/tsconfig.packaged.json",
+            "tsConfig": "apps/demo/tsconfig.packaged.json",
             "polyfills": "apps/demo/src/polyfills.ts",
             "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"],
             "styles": ["apps/demo/src/styles.scss"],
