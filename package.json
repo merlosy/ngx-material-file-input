@@ -15,6 +15,7 @@
     "build:demo": "ng build --project=demo-packaged --prod --base-href /ngx-material-file-input/",
     "commit:demo": "git add -f dist/apps/demo-packaged && git commit -m \"update demo\"",
     "push:demo": "git subtree push --prefix dist/apps/demo-packaged origin gh-pages",
+    "erase:demo": "git push origin --delete gh-pages",
     "deploy:demo": "npm run commit:demo && npm run push:demo",
     "publish:lib": "npm publish dist/material-file-input",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
