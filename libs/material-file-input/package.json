@@ -22,7 +22,7 @@
   },
   "ngPackage": {
     "lib": {
-      "entryFile": "public_api.ts"
+      "entryFile": "src/index.ts"
     },
     "dest": "../../dist/material-file-input"
   }
