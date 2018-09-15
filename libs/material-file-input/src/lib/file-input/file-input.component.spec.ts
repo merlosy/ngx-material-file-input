@@ -95,6 +95,12 @@ describe('FileInputComponent', () => {
     expect(component.disabled).toBeTruthy();
   });
 
+  it('should have `accept` attribute', () => {
+    const accept = '.pdf';
+    component.accept = accept;
+    expect(component.accept).toBe(accept);
+  })
+
   it('should propagate onContainerClick()', () => {
     spyOn(component, 'open').and.stub();
     component.onContainerClick({
