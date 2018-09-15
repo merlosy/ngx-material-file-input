@@ -61,7 +61,7 @@ describe('FileInputComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have no files', () => {
+  it('should have no files by default', () => {
     expect(component.value).toBeNull();
   });
 
@@ -93,6 +93,20 @@ describe('FileInputComponent', () => {
   it('should set/get disabled state', () => {
     component.disabled = true;
     expect(component.disabled).toBeTruthy();
+  });
+
+  it('should have `accept` attribute', () => {
+    const accept = '.pdf';
+    component.accept = accept;
+    expect(component.accept).toBe(accept);
+  });
+
+  xit('should refuse invalid format, based on `accept` attribute', () => {
+    const accept = '.png';
+    component.accept = accept;
+    const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    component.value = new FileInput([file]);
+    expect(component.fileNames).toBe('');
   });
 
   it('should propagate onContainerClick()', () => {
