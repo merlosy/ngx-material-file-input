@@ -28,7 +28,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
 
   @Input() valuePlaceholder: string;
   @Input() multiple: boolean;
-  @Input() accept: string = null;
+  @Input() accept: string | null = null;
 
   @HostBinding() id = `ngx-mat-file-input-${FileInputComponent.nextId++}`;
   @HostBinding('attr.aria-describedby') describedBy = '';

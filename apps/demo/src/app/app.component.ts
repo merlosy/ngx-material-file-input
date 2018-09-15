@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.formDoc = this._fb.group({
       basicfile: [],
+      acceptfile: [],
       requiredfile: [{ value: undefined, disabled: false }, [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
       disabledfile: [{ value: undefined, disabled: true }],
       multiplefile: [{ value: undefined, disabled: false }]
@@ -68,6 +69,13 @@ export class AppComponent implements OnInit {
         disabledfile: [{ value: undefined, disabled: true }]
       });
     }`;
+  }
+
+  get accept() {
+    return `<mat-form-field>
+      <ngx-mat-file-input formControlName="acceptfile" placeholder="PDF file only" [accept]="'.pdf'"></ngx-mat-file-input>
+      <mat-icon matSuffix>folder</mat-icon>
+    </mat-form-field>`;
   }
 
   get multiple() {

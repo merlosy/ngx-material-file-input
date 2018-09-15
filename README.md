@@ -12,8 +12,6 @@ For more code samples, have a look at the [DEMO SITE](https://merlosy.github.io/
 
 ## Install
 
-File input for Angular Material form-field
-
 ```
 npm i ngx-material-file-input
 ```
@@ -50,7 +48,7 @@ implements: [MatFormFieldControl](https://material.angular.io/components/form-fi
 | _@Input()_ valuePlaceholder: `string` | Placeholder for file names, empty by default                                                                                |
 | _@Input()_ multiple: `boolean`        | Allows multiple file inputs, `false` by default                                                                             |
 | _@Input()_ autofilled: `boolean`      | Whether the input is currently in an autofilled state. If property is not present on the control it is assumed to be false. |
-| _@Input()_ accept: `string`           | Any value that `accept` attribute can get.                                                                                  |
+| _@Input()_ accept: `string`           | Any value that `accept` attribute can get. [more about "accept"](https://www.w3schools.com/tags/att_input_accept.asp)       |
 | value: `FileInput`                    | form control value                                                                                                          |
 
 ### ByteFormatPipe
@@ -77,7 +75,6 @@ _Output:_ 100 MB
 
 # Roadmap
 
-* support "accept" type of file
 * drop event to add files
 * _ideas?_
 
