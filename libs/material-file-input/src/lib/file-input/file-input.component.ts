@@ -122,10 +122,18 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   }
 
   private _onChange = (_: any) => {};
-  private _onTouched = () => {};
+  private _onTouched = () => {}; 
 
-  writeValue(obj: any): void {
-    this._renderer.setProperty(this._elementRef.nativeElement, 'value', obj);
+  writeValue(obj: File[] | FileInput): void {
+    let data: File[];
+
+    if(obj instanceof FileInput) {
+      data = obj.files;
+    } else {
+      data = obj;
+    }
+
+    this._renderer.setProperty(this._elementRef.nativeElement, 'value', data);
   }
 
   registerOnChange(fn: (_: any) => void): void {
