@@ -122,7 +122,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   }
 
   private _onChange = (_: any) => {};
-  private _onTouched = () => {}; 
+  private _onTouched = () => {};
 
   writeValue(obj: File[] | FileInput): void {
     let data: File[];
