@@ -4,7 +4,7 @@ describe('FileInput', () => {
   let model: FileInput;
 
   it('should have empty fileName', () => {
-    model = new FileInput(null);
+    model = new FileInput([]);
     expect(model.fileNames).toBe('');
   });
 });
