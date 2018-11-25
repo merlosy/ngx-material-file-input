@@ -43,7 +43,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   }
   set value(fileInput: FileInput | null) {
     if (fileInput) {
-      this.writeValue(fileInput.files);
+      this.writeValue(fileInput);
       this.stateChanges.next();
     }
   }
@@ -124,8 +124,8 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   private _onChange = (_: any) => {};
   private _onTouched = () => {};
 
-  writeValue(obj: any): void {
-    this._renderer.setProperty(this._elementRef.nativeElement, 'value', obj);
+  writeValue(obj: FileInput): void {
+    this._renderer.setProperty(this._elementRef.nativeElement, 'value', obj.files);
   }
 
   registerOnChange(fn: (_: any) => void): void {
