@@ -111,7 +111,7 @@ git add package.json libs/material-file-input/package.json
 git commit -m "Release version ${NEW_VERSION}"
 
 echo "> Tag release version"
-git tag -a ${VERSION} -m "Tag version ${VERSION}"
+git tag -a ${NEW_VERSION} -m "Tag version ${NEW_VERSION}"
 
 echo "> Publishing to npm"
 npm run publish:lib
