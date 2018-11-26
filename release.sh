@@ -107,7 +107,7 @@ npm run clean
 npm run build:lib
 
 echo "> Commit release version"
-git add package.json libs/material-file-input/package.json
+git add package.json package-lock.json libs/material-file-input/package.json
 git commit -m "Release version ${NEW_VERSION}"
 
 echo "> Tag release version"
