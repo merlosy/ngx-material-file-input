@@ -103,6 +103,7 @@ sed -i '' 's/"version": "'${VERSION_1}'"/"version": "'${NEW_VERSION}'"/g' libs/m
 npm --no-git-tag-version version "${NEW_VERSION}"
 
 echo "> Building application artifact"
+npm run clean
 npm run build:lib
 
 echo "> Commit release version"
@@ -121,4 +122,4 @@ git push --set-upstream origin ${BRANCH}
 echo "> Pushing tags to origin"
 git push --tags
 
-echo "> Release SUCCESSFUL"
+echo "> Release SUCCESSFUL !"
