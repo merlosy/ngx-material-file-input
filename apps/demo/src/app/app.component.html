@@ -26,16 +26,16 @@
       <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected"
         required></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
-      <mat-error *ngIf="formDoc.get('requiredfile').hasError('required')">
+      <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('required')">
         Please select a file
       </mat-error>
-      <mat-error *ngIf="formDoc.get('requiredfile').hasError('maxContentSize')">
+      <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('maxContentSize')">
         The total size must not exceed {{formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}}
         ({{formDoc.get('requiredfile')?.getError('maxContentSize').actualSize
         | byteFormat}}).
       </mat-error>
     </mat-form-field>
-    <pre>{{formDoc.get('requiredfile').errors | json}}</pre>
+    <pre>{{formDoc.get('requiredfile')?.errors | json}}</pre>
 
     <h2>Disabled input</h2>
 
