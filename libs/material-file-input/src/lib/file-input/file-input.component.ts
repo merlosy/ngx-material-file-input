@@ -80,7 +80,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
     return this.disabled;
   }
   @Input()
-  get disabled() {
+  get disabled(): boolean {
     return this._elementRef.nativeElement.disabled;
   }
   set disabled(dis: boolean) {
@@ -89,8 +89,8 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   }
 
   @Input()
-  get errorState() {
-    return this.ngControl.errors !== null && this.ngControl.touched;
+  get errorState(): boolean {
+    return this.ngControl.errors !== null && !!this.ngControl.touched;
   }
 
   onContainerClick(event: MouseEvent) {
@@ -137,9 +137,9 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   }
 
   @HostListener('change', ['$event'])
-  change(event: any) {
-    const fileList = event.target.files;
-    const fileArray = [];
+  change(event: Event) {
+    const fileList: FileList | null = (<HTMLInputElement>event.target).files;
+    const fileArray: File[] = [];
     if (fileList) {
       for (let i = 0; i < fileList.length; i++) {
         fileArray.push(fileList[i]);
@@ -155,7 +155,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
     this._onTouched();
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
   }
 

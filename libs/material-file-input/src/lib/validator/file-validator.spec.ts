@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidationErrors } from '@angular/forms';
 import { FileInput } from '../model/file-input.model';
 import { FileValidator } from './file-validator';
 
@@ -28,7 +28,9 @@ describe('FileValidator', () => {
     it('should not validate, with "maxContentSize" error', () => {
       const data = new FileInput([new File(['test'], 'test.txt')]);
       const control = new FormControl(data, [FileValidator.maxContentSize(3)]);
-      expect(control.errors.maxContentSize).toEqual({
+      const errors: ValidationErrors | null = (control.errors as ValidationErrors);
+      const maxSizeError: { [key: string]: any } | null = (errors.maxContentSize as { [key: string]: any })
+      expect(maxSizeError).toEqual({
         actualSize: 4,
         maxSize: 3
       });
