@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/merlosy/ngx-material-file-input.svg?branch=master)](https://travis-ci.org/merlosy/ngx-material-file-input)
 [![npm](https://img.shields.io/npm/dt/ngx-material-file-input.svg)](https://www.npmjs.com/package/ngx-material-file-input)
+[![](https://img.shields.io/bundlephobia/min/react.svg)](https://www.npmjs.com/package/ngx-material-file-input)
 
 # material-file-input
 
