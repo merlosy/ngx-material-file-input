@@ -90,7 +90,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
 
   @Input()
   get errorState(): boolean {
-    return (this.ngControl.errors !== null && this.ngControl.touched) as boolean;
+    return this.ngControl.errors !== null && !!this.ngControl.touched;
   }
 
   onContainerClick(event: MouseEvent) {
