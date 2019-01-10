@@ -145,7 +145,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
 
   /**
    * Remove all files from the file input component
-   * @param {Event?} event that may have triggered the clear action
+   * @param [event] optional event that may have triggered the clear action
    */
   clear(event?: Event) {
     if (event) {
