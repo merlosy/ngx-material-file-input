@@ -130,6 +130,14 @@ describe('FileInputComponent', () => {
     expect(component.open).not.toHaveBeenCalled();
   });
 
+  it('should remove file from Input', () => {
+    const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    component.value = new FileInput([file]);
+    expect(component.value.files.length).toBe(1);
+    component.clear();
+    expect(component.empty).toBeTruthy();
+  });
+
   xit('should propagate click', () => {
     spyOn(component, 'open').and.stub();
     fixture.debugElement.nativeElement.click();

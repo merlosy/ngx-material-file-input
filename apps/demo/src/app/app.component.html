@@ -1,6 +1,4 @@
-<mat-toolbar color="primary">
-  Angular Material - File Input
-</mat-toolbar>
+<mat-toolbar color="primary"> Angular Material - File Input </mat-toolbar>
 
 <div class="main">
 
@@ -17,25 +15,43 @@
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
 
+    <h2>Input with clear button</h2>
+
+    <p>
+      This is a workaround for an issue with Firefox that doesn't triggers change event when the user cancels the upload. With other browsers, it results in removing files from the input.
+    </p>
+
+    <app-code-sample [code]="removable"></app-code-sample>
+
+    <p>Add a file to reveal the clear button.</p>
+
+    <mat-form-field>
+      <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Removable Input"></ngx-mat-file-input>
+      <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+
     <h2>Input with validation: required and maxSize</h2>
 
     <app-code-sample [code]="advancedTs"></app-code-sample>
     <app-code-sample [code]="advanced"></app-code-sample>
 
     <mat-form-field>
-      <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected"
-        required></ngx-mat-file-input>
+      <ngx-mat-file-input
+        formControlName="requiredfile"
+        placeholder="Required input"
+        valuePlaceholder="No file selected"
+        required
+      ></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
-      <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('required')">
-        Please select a file
-      </mat-error>
+      <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('required')"> Please select a file </mat-error>
       <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('maxContentSize')">
-        The total size must not exceed {{formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat}}
-        ({{formDoc.get('requiredfile')?.getError('maxContentSize').actualSize
-        | byteFormat}}).
+        The total size must not exceed {{ formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat }}
+        ({{ formDoc.get('requiredfile')?.getError('maxContentSize').actualSize | byteFormat }}).
       </mat-error>
     </mat-form-field>
-    <pre>{{formDoc.get('requiredfile')?.errors | json}}</pre>
+    <pre>{{ formDoc.get('requiredfile')?.errors | json }}</pre>
 
     <h2>Disabled input</h2>
 
@@ -69,7 +85,5 @@
     <app-code-sample [code]="bytePipe"></app-code-sample>
 
     <p>A file size of {{ maxSize }} gives a human readable size of {{ maxSize | byteFormat }}</p>
-
   </form>
-
 </div>
