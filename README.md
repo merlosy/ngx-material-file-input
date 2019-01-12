@@ -22,11 +22,20 @@ npm i ngx-material-file-input
 
 ## API reference
 
+### MaterialFileInputModule
+
 ```ts
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+
+@NgModule({
+  imports: [
+    // the module for this lib
+    MaterialFileInputModule
+  ]
+})
 ```
 
-#### optional NGX_MAT_FILE_INPUT_CONFIG token:
+#### NGX_MAT_FILE_INPUT_CONFIG token (optional):
 
 Change the unit of the ByteFormat pipe
 
@@ -39,7 +48,7 @@ export const config: FileInputConfig = {
 providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }];
 ```
 
-### NgxMatFormField
+### FileInputComponent
 
 selector: `<ngx-mat-file-input>`
 
@@ -53,7 +62,9 @@ implements: [MatFormFieldControl](https://material.angular.io/components/form-fi
 | _@Input()_ multiple: `boolean`        | Allows multiple file inputs, `false` by default                                                                             |
 | _@Input()_ autofilled: `boolean`      | Whether the input is currently in an autofilled state. If property is not present on the control it is assumed to be false. |
 | _@Input()_ accept: `string`           | Any value that `accept` attribute can get. [more about "accept"](https://www.w3schools.com/tags/att_input_accept.asp)       |
-| value: `FileInput`                    | form control value                                                                                                          |
+| value: `FileInput`                    | Form control value                                                                                                          |
+| empty: `boolean`                    | Whether the input is empty (no files) or not                                                                                                          |
+| clear(): `(event?) => void`                    | Removes all files from the input                                                                                                          |
 
 ### ByteFormatPipe
 
