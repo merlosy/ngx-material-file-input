@@ -18,11 +18,15 @@ install:
 before_script:
   - 'sudo chown root /opt/google/chrome/chrome-sandbox'
   - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
+  - npm install coveralls
 script:
   - npm run lint
-  - npm run test:once
+  - npm run test:once -- --code-coverage
   - npm run build:lib
   - npm run build:demo
+# Pipe the coverage data to Coveralls
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: pages
   skip_cleanup: true

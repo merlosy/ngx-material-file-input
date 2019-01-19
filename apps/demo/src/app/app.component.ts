@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.formDoc = this._fb.group({
       basicfile: [],
+      removablefile: [],
       acceptfile: [],
       requiredfile: [{ value: undefined, disabled: false }, [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
       disabledfile: [{ value: undefined, disabled: true }],
@@ -83,6 +84,15 @@ export class AppComponent implements OnInit {
       <ngx-mat-file-input formControlName="multiplefile" placeholder="Multiple inputs" multiple></ngx-mat-file-input>
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>`;
+  }
+
+  get removable() {
+    return `<mat-form-field>
+    <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Removable Input"></ngx-mat-file-input>
+    <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>`;
   }
 
   get bytePipe() {

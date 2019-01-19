@@ -57,6 +57,9 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
     this.stateChanges.next();
   }
 
+  /**
+   * Whether the current input has files
+   */
   get empty() {
     return !this._elementRef.nativeElement.value || this._elementRef.nativeElement.value.length === 0;
   }
@@ -124,6 +127,10 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   private _onChange = (_: any) => {};
   private _onTouched = () => {};
 
+  get fileNames() {
+    return this.value ? this.value.fileNames : this.valuePlaceholder;
+  }
+
   writeValue(obj: FileInput | null): void {
     this._renderer.setProperty(this._elementRef.nativeElement, 'value', obj instanceof FileInput ? obj.files : null);
   }
@@ -134,6 +141,19 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
 
   registerOnTouched(fn: any): void {
     this._onTouched = fn;
+  }
+
+  /**
+   * Remove all files from the file input component
+   * @param [event] optional event that may have triggered the clear action
+   */
+  clear(event?: Event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.value = new FileInput([]);
+    this._onChange(this.value);
   }
 
   @HostListener('change', ['$event'])
@@ -167,10 +187,6 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
     if (!this.disabled) {
       this._elementRef.nativeElement.querySelector('input').click();
     }
-  }
-
-  get fileNames() {
-    return this.value ? this.value.fileNames : this.valuePlaceholder;
   }
 
   ngOnDestroy() {
