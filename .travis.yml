@@ -3,10 +3,22 @@ sudo: required
 language: node_js
 node_js:
   - '8'
+  - '9'
+  - '10'
+  - '11'
 os:
   - linux
 addons:
   chrome: stable
+# TODO only repo: merlosy/ngx-material-file-input
+
+stages:
+  - validate
+  - test
+  - build
+  - name: deploy
+    if: branch = master
+
 before_install:
   # Use a virtual display.
   - export DISPLAY=:99.0
@@ -15,23 +27,79 @@ before_install:
   - export CHROME_BIN=chromium-browser
 install:
   - npm install
-before_script:
-  - 'sudo chown root /opt/google/chrome/chrome-sandbox'
-  - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
-  - npm install coveralls
-script:
-  - npm run lint
-  - npm run test:once -- --code-coverage
-  - npm run build:lib
-  - npm run build:demo
-# Pipe the coverage data to Coveralls
-after_success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep-history: true
-  local_dir: dist/apps/demo-packaged
-  on:
-    branch: master
+
+jobs:
+  include:
+    - stage: validate
+      name: "Lint"
+      script:
+        - npm run lint
+    - stage: test
+      name: "Unit tests"
+      before_script:
+        - 'sudo chown root /opt/google/chrome/chrome-sandbox'
+        - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
+        - npm install coveralls
+      script:
+        - npm run test:once -- --code-coverage
+      # Pipe the coverage data to Coveralls
+      after_success:
+        - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+    - stage: build
+      name: "Build lib"
+      script:
+        - npm run build:lib
+    - stage: build
+      name: "Build Demo app"
+      script:
+        - npm run build:demo
+    - stage: deploy
+      name: "Deploy to Github pages"
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        keep-history: true
+        local_dir: dist/apps/demo-packaged
+        on:
+          branch: master
+          tags: true
+    - stage: deploy
+      name: "Deploy to NPM"
+      deploy:
+        provider: npm
+        api_key: $NPM_API_KEY
+        local_dir: dist/material-file-input
+        on:
+          branch: master
+          tags: true
+
+
+# before_install:
+#   # Use a virtual display.
+#   - export DISPLAY=:99.0
+#   - sh -e /etc/init.d/xvfb start
+#   # Install latest chrome.
+#   - export CHROME_BIN=chromium-browser
+# install:
+#   - npm install
+# before_script:
+#   - 'sudo chown root /opt/google/chrome/chrome-sandbox'
+#   - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
+#   - npm install coveralls
+# script:
+#   - npm run lint
+#   - npm run test:once -- --code-coverage
+#   - npm run build:lib
+#   - npm run build:demo
+# # Pipe the coverage data to Coveralls
+# after_success:
+#   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+# deploy:
+#   provider: pages
+#   skip_cleanup: true
+#   github_token: $GITHUB_TOKEN
+#   keep-history: true
+#   local_dir: dist/apps/demo-packaged
+#   on:
+#     branch: master
