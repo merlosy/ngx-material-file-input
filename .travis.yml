@@ -8,17 +8,10 @@ os:
   - linux
 addons:
   chrome: stable
-# TODO only repo: merlosy/ngx-material-file-input
 
 stages:
   - validate
-  - test
-  - build
-  - name: deploy
-    on:
-      repo: merlosy/ngx-material-file-input
-      branch: master
-      tags: true
+  - deploy
 
 before_install:
   # Use a virtual display.
@@ -28,120 +21,68 @@ before_install:
   - export CHROME_BIN=chromium-browser
 install:
   - npm install
-script:
-  - npm run test:once
 
 jobs:
   include:
+    # *--------------------*
+    # |      VALIDATE      |
+    # *--------------------*
     - stage: validate
       name: "Lint"
       script:
         - npm run lint
-    # *--------------------*
-    # |        TEST        |
-    # *--------------------*
-    - stage: test
-      name: "Unit tests"
+    - stage: validate
+      name: "Unit tests and Coverage"
       node_js:
         - '8'
         - '9'
         - '10'
         - '11'
-      script:
-        - npm run test:once
-    # *--------------------*
-    # |       BUILD        |
-    # *--------------------*
-    - stage: build
-      name: "Build lib"
-      script:
-        - npm run build:lib
-    - stage: build
-      name: "Build Demo app"
-      script:
-        - npm run build:demo
-    - stage: build
-      name: "Generate coverage"
       before_script:
         - 'sudo chown root /opt/google/chrome/chrome-sandbox'
         - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
         - npm install coveralls
       script:
+        - echo "> Running tests against $(node -v)"
         - npm run test:once -- --code-coverage
-      # Pipe the coverage data to Coveralls
       after_success:
         - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
     # *--------------------*
-    # |     DEPLOYMENT     |
+    # |       DEPLOY       |
     # *--------------------*
     - stage: deploy
-      name: "Deploy to Github pages"
+      name: "Build and deploy"
       script:
+        - npm run build:lib
         - npm run build:demo
       deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN
-        keep-history: true
-        local_dir: dist/apps/demo-packaged
-        on:
-          repo: merlosy/ngx-material-file-input
-          branch: master
-          tags: true
-    - stage: deploy
-      name: "Deploy to NPM"
-      script:
-        - npm run build:lib
-      deploy:
-        provider: npm
-        api_key: $NPM_API_KEY
-        local_dir: dist/material-file-input
-        on:
-          repo: merlosy/ngx-material-file-input
-          branch: master
-          tags: true
-    - stage: deploy
-      name: "Preset to Github Release"
-      script:
-        - npm run build:lib
-      deploy:
-        provider: releases
-        api_key: $GITHUB_TOKEN
-        file_glob: true
-        file: dist/material-file-input/**/*
-        skip_cleanup: true
-        draft: true
-      on:
-        repo: merlosy/ngx-material-file-input
-        branch: master
-        tags: true
-
-
-# before_install:
-#   # Use a virtual display.
-#   - export DISPLAY=:99.0
-#   - sh -e /etc/init.d/xvfb start
-#   # Install latest chrome.
-#   - export CHROME_BIN=chromium-browser
-# install:
-#   - npm install
-# before_script:
-#   - 'sudo chown root /opt/google/chrome/chrome-sandbox'
-#   - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
-#   - npm install coveralls
-# script:
-#   - npm run lint
-#   - npm run test:once -- --code-coverage
-#   - npm run build:lib
-#   - npm run build:demo
-# # Pipe the coverage data to Coveralls
-# after_success:
-#   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-# deploy:
-#   provider: pages
-#   skip_cleanup: true
-#   github_token: $GITHUB_TOKEN
-#   keep-history: true
-#   local_dir: dist/apps/demo-packaged
-#   on:
-#     branch: master
+        - provider: pages
+          skip_cleanup: true
+          script: echo "> Deploying Demo to Github pages"
+          github_token: $GITHUB_TOKEN
+          keep-history: true
+          local_dir: dist/apps/demo-packaged
+          on:
+            repo: merlosy/ngx-material-file-input
+            branch: master
+            tags: true
+        - provider: npm
+          skip_cleanup: true
+          script: echo "> Deploying package to NPM"
+          api_key: $NPM_API_KEY
+          local_dir: dist/material-file-input
+          on:
+            repo: merlosy/ngx-material-file-input
+            branch: master
+            tags: true
+        - provider: releases
+          skip_cleanup: true
+          script: echo "> Drafting Github release"
+          api_key: $GITHUB_TOKEN
+          file_glob: true
+          file: dist/material-file-input/**/*
+          draft: true
+          on:
+            repo: merlosy/ngx-material-file-input
+            branch: master
+            tags: true
