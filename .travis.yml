@@ -69,6 +69,7 @@ jobs:
         - provider: npm
           skip_cleanup: true
           script: echo "> Deploying package to NPM"
+          email: $EMAIL
           api_key: $NPM_API_KEY
           local_dir: dist/material-file-input
           on:
