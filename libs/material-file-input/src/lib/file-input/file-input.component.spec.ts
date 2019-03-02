@@ -1,6 +1,6 @@
 import { ReactiveFormsModule, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatIconModule, MatFormFieldModule } from '@angular/material';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 
 import { FileInputComponent } from './file-input.component';
 import { FileInput } from '../model/file-input.model';
@@ -130,13 +130,21 @@ describe('FileInputComponent', () => {
     expect(component.open).not.toHaveBeenCalled();
   });
 
-  it('should remove file from Input', () => {
+  it('should remove file from Input', fakeAsync(() => {
     const file = new File(['test'], 'test.pdf', { type: 'application/pdf' });
     component.value = new FileInput([file]);
+    fixture.nativeElement.querySelector('input').dispatchEvent(new Event('input'));
+    tick();
+    fixture.detectChanges();
     expect(component.value.files.length).toBe(1);
+    // expect(fixture.nativeElement.querySelector('input').files.length).toBe(1); // is 0, this should be incremented
     component.clear();
+    tick();
+    fixture.detectChanges();
     expect(component.empty).toBeTruthy();
-  });
+    expect(component.value).toBeNull();
+    // expect(fixture.nativeElement.querySelector('input').value).toBe('');
+  }));
 
   xit('should propagate click', () => {
     spyOn(component, 'open').and.stub();

@@ -153,6 +153,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
       event.stopPropagation();
     }
     this.value = new FileInput([]);
+    this._elementRef.nativeElement.querySelector('input').value = null;
     this._onChange(this.value);
   }
 
