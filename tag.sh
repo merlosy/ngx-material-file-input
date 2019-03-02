@@ -111,15 +111,12 @@ git add package.json package-lock.json libs/material-file-input/package.json
 git commit -m "Release version ${NEW_VERSION}"
 
 echo "> Tag release version"
-git tag -a ${NEW_VERSION} -m "Tag version ${NEW_VERSION}"
-
-echo "> Publishing to npm"
-npm run publish:lib
+git tag -a "v${NEW_VERSION}" -m "Tag version ${NEW_VERSION}"
 
 echo "> Pushing changes to origin"
 git push --set-upstream origin ${BRANCH}
 
-echo "> Pushing tags to origin"
+echo "> Pushing tag to origin"
 git push --tags
 
-echo "> Release SUCCESSFUL !"
+echo "> Tag SUCCESSFUL !"
