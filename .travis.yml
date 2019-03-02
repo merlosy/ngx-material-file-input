@@ -68,10 +68,12 @@ jobs:
             tags: true
         - provider: releases
           skip_cleanup: true
-          script: echo "> Drafting Github release"
+          script:
+            - echo "> Drafting Github release"
+            - zip -r9 ngx-material-file-input-$TRAVIS_TAG.zip dist/material-file-input
           api_key: $GITHUB_TOKEN
           file_glob: true
-          file: dist/material-file-input/**/*
+          file: ngx-material-file-input-$TRAVIS_TAG.zip
           draft: true
           on:
             repo: merlosy/ngx-material-file-input
