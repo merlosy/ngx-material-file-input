@@ -55,6 +55,10 @@ jobs:
       script:
         - npm run build:lib
         - npm run build:demo
+      after_success:
+        - echo "Build successful - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"
+      before_deploy:
+        - zip -r9 ngx-material-file-input-$TRAVIS_TAG.zip dist/material-file-input
       deploy:
         - provider: pages
           skip_cleanup: true
@@ -68,9 +72,7 @@ jobs:
             tags: true
         - provider: releases
           skip_cleanup: true
-          script:
-            - echo "> Drafting Github release"
-            - zip -r9 ngx-material-file-input-$TRAVIS_TAG.zip dist/material-file-input
+          script: echo "> Drafting Github release"
           api_key: $GITHUB_TOKEN
           file_glob: true
           file: ngx-material-file-input-$TRAVIS_TAG.zip
