@@ -81,14 +81,12 @@ jobs:
             repo: merlosy/ngx-material-file-input
             branch: master
             tags: true
-        - provider: npm
-          skip_cleanup: true
-          script:
-            - echo "> Deploying package to NPM"
-            - cd dist/material-file-input
-          email: $EMAIL
-          api_key: $NPM_API_KEY
-          on:
-            repo: merlosy/ngx-material-file-input
-            branch: master
-            tags: true
+        # - provider: npm
+        #   skip_cleanup: true
+        #   script: cd dist/material-file-input && echo "> Deploying package to NPM"
+        #   email: $EMAIL
+        #   api_key: $NPM_API_KEY
+        #   on:
+        #     repo: merlosy/ngx-material-file-input
+        #     branch: master
+        #     tags: true
