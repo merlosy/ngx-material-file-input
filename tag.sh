@@ -116,6 +116,9 @@ git tag -a "v${NEW_VERSION}" -m "Tag version ${NEW_VERSION}"
 echo "> Pushing changes to origin"
 git push --set-upstream origin ${BRANCH}
 
+echo "> Publishing to npm"
+npm run publish:lib
+
 echo "> Pushing tag to origin"
 git push --tags
 
