@@ -80,6 +80,15 @@
       <mat-icon matSuffix>folder</mat-icon>
     </mat-form-field>
 
+    <h2>Input with custom ErrorStateMatcher</h2>
+
+    <app-code-sample [code]="errorStateTs"></app-code-sample>
+    <app-code-sample [code]="errorState"></app-code-sample>
+
+    <mat-form-field>
+      <ngx-mat-file-input formControlName="errorStateFile" placeholder="Shows error for PDF" [errorStateMatcher]="errorStateMatcher"></ngx-mat-file-input>
+    </mat-form-field>
+
     <h2>ByteFormat pipe</h2>
 
     <app-code-sample [code]="bytePipe"></app-code-sample>

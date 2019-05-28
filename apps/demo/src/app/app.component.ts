@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, NgForm, FormGroupDirective } from '@angular/forms';
 import { FileValidator } from 'ngx-material-file-input';
+import { ErrorStateMatcher } from '@angular/material';
+
+
+class ExampleErrorStateMatcher implements ErrorStateMatcher {
+  public isErrorState(control: FormControl, _: NgForm | FormGroupDirective): boolean {
+    return (control && control.value && control.value._fileNames && control.value._fileNames.endsWith('pdf'));
+  }
+}
 
 @Component({
   selector: 'app-root',
@@ -8,6 +16,7 @@ import { FileValidator } from 'ngx-material-file-input';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  errorStateMatcher = new ExampleErrorStateMatcher();
   formDoc: FormGroup;
 
   // 100 MB
@@ -22,7 +31,8 @@ export class AppComponent implements OnInit {
       acceptfile: [],
       requiredfile: [{ value: undefined, disabled: false }, [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
       disabledfile: [{ value: undefined, disabled: true }],
-      multiplefile: [{ value: undefined, disabled: false }]
+      multiplefile: [{ value: undefined, disabled: false }],
+      errorStateFile: []
     });
   }
 
@@ -97,5 +107,21 @@ export class AppComponent implements OnInit {
 
   get bytePipe() {
     return `<p>A file size of {{ maxSize }} gives a human readable size of {{ maxSize | byteFormat }}</p>`;
+  }
+
+  get errorStateTs() {
+    return `class ExampleErrorStateMatcher implements ErrorStateMatcher {
+      public isErrorState(control: FormControl, _: NgForm | FormGroupDirective): boolean {
+        return
+          (control && control.value && control.value._fileNames && control.value._fileNames.endsWith('pdf'));
+      }
+    }`;
+  }
+  get errorState() {
+    return `<mat-form-field>
+      <ngx-mat-file-input formControlName="errorStateFile" placeholder="Shows error for PDF"
+        [errorStateMatcher]="errorStateMatcher">
+      </ngx-mat-file-input>
+    </mat-form-field>`;
   }
 }
