@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/libs/material-file-input",
+    "outDir": "../../dist/out-tsc",
     "types": ["jasmine", "node"]
   },
   "files": ["src/test.ts"],
