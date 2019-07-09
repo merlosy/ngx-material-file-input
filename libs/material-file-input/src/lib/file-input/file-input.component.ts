@@ -1,23 +1,11 @@
 import { Component, OnInit, Input, ElementRef, OnDestroy, HostBinding, Renderer2, HostListener, Optional, Self, DoCheck } from '@angular/core';
 import { ControlValueAccessor, NgControl, NgForm, FormGroupDirective } from '@angular/forms';
-import { MatFormFieldControl, ErrorStateMatcher, CanUpdateErrorStateCtor, mixinErrorState } from '@angular/material';
+import { MatFormFieldControl, ErrorStateMatcher } from '@angular/material';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { FileInput } from '../model/file-input.model';
-
-// Boilerplate for applying mixins to FileInput
-/** @docs-private */
-export class FileInputBase {
-  constructor(public _defaultErrorStateMatcher: ErrorStateMatcher,
-      public _parentForm: NgForm,
-      public _parentFormGroup: FormGroupDirective,
-      public ngControl: NgControl) { }
-}
-export const _FileInputMixinBase:
-  CanUpdateErrorStateCtor &
-  typeof FileInputBase =
-  mixinErrorState(FileInputBase);
+import { FileInputMixinBase } from './file-input-mixin';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -26,7 +14,7 @@ export const _FileInputMixinBase:
   styleUrls: ['./file-input.component.css'],
   providers: [{ provide: MatFormFieldControl, useExisting: FileInputComponent }]
 })
-export class FileInputComponent extends _FileInputMixinBase implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
+export class FileInputComponent extends FileInputMixinBase implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
   static nextId = 0;
 
   focused = false;
@@ -115,15 +103,15 @@ export class FileInputComponent extends _FileInputMixinBase implements MatFormFi
    * @see https://angular.io/api/forms/ControlValueAccessor
    */
   constructor(
-    @Optional()
-    @Self()
-    public ngControl: NgControl,
     private fm: FocusMonitor,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
-    @Optional() _parentForm: NgForm,
-    @Optional() _parentFormGroup: FormGroupDirective,
-    _defaultErrorStateMatcher: ErrorStateMatcher,
+    public _defaultErrorStateMatcher: ErrorStateMatcher,
+    @Optional()
+    @Self()
+    public ngControl: NgControl,
+    @Optional() public _parentForm: NgForm,
+    @Optional() public _parentFormGroup: FormGroupDirective,
   ) {
     super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl)
 

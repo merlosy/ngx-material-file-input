@@ -29,12 +29,20 @@ import { FileInputComponent } from './file-input.component';
 // return TestBed.createComponent<T>(component);
 // }
 
+/**
+* Shows error state on a control if it is touched and has any error.
+* Used as global ErrorStateMatcher for all tests.
+*/
 class FileInputSpecErrorStateMatcher implements ErrorStateMatcher {
   public isErrorState(control: FormControl | null, _: FormGroupDirective | NgForm | null): boolean {
     return !!(control && control.errors !== null && control.touched);
   }
 }
 
+/**
+* Shows error state on a control with exactly two validation errors.
+* Used to change the ErrorStateMatcher of a single component.
+*/
 class OverrideErrorStateMatcher implements ErrorStateMatcher {
   public isErrorState(control: FormControl | null, _: FormGroupDirective | NgForm | null): boolean {
     return !!(control && control.errors && control.errors.length === 2);

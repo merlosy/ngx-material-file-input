@@ -3,7 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormControl, NgForm, FormGroupDirec
 import { FileValidator } from 'ngx-material-file-input';
 import { ErrorStateMatcher } from '@angular/material';
 
-
+/**
+* Shows error state on the file-input if a pdf-file is selected.
+*/
 class ExampleErrorStateMatcher implements ErrorStateMatcher {
   public isErrorState(control: FormControl, _: NgForm | FormGroupDirective): boolean {
     return (control && control.value && control.value._fileNames && control.value._fileNames.endsWith('pdf'));
