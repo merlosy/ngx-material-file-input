@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, ElementRef, OnDestroy, HostBinding, Renderer2, HostListener, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { MatFormFieldControl } from '@angular/material';
+import { Component, OnInit, Input, ElementRef, OnDestroy, HostBinding, Renderer2, HostListener, Optional, Self, DoCheck } from '@angular/core';
+import { ControlValueAccessor, NgControl, NgForm, FormGroupDirective } from '@angular/forms';
+import { MatFormFieldControl, ErrorStateMatcher } from '@angular/material';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Subject } from 'rxjs';
 
 import { FileInput } from '../model/file-input.model';
+import { FileInputMixinBase } from './file-input-mixin';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,10 +14,9 @@ import { FileInput } from '../model/file-input.model';
   styleUrls: ['./file-input.component.css'],
   providers: [{ provide: MatFormFieldControl, useExisting: FileInputComponent }]
 })
-export class FileInputComponent implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy {
+export class FileInputComponent extends FileInputMixinBase implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
   static nextId = 0;
 
-  stateChanges = new Subject<void>();
   focused = false;
   controlType = 'file-input';
 
@@ -29,6 +28,7 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
   @Input() valuePlaceholder: string;
   @Input() multiple: boolean;
   @Input() accept: string | null = null;
+  @Input() errorStateMatcher: ErrorStateMatcher;
 
   @HostBinding() id = `ngx-mat-file-input-${FileInputComponent.nextId++}`;
   @HostBinding('attr.aria-describedby') describedBy = '';
@@ -91,11 +91,6 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
     this.stateChanges.next();
   }
 
-  @Input()
-  get errorState(): boolean {
-    return this.ngControl.errors !== null && !!this.ngControl.touched;
-  }
-
   onContainerClick(event: MouseEvent) {
     if ((event.target as Element).tagName.toLowerCase() !== 'input' && !this.disabled) {
       this._elementRef.nativeElement.querySelector('input').focus();
@@ -108,13 +103,18 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
    * @see https://angular.io/api/forms/ControlValueAccessor
    */
   constructor(
+    private fm: FocusMonitor,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    public _defaultErrorStateMatcher: ErrorStateMatcher,
     @Optional()
     @Self()
     public ngControl: NgControl,
-    private fm: FocusMonitor,
-    private _elementRef: ElementRef,
-    private _renderer: Renderer2
+    @Optional() public _parentForm: NgForm,
+    @Optional() public _parentFormGroup: FormGroupDirective,
   ) {
+    super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl)
+
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
@@ -194,4 +194,14 @@ export class FileInputComponent implements MatFormFieldControl<FileInput>, Contr
     this.stateChanges.complete();
     this.fm.stopMonitoring(this._elementRef.nativeElement);
   }
+
+  ngDoCheck(): void {
+    if (this.ngControl) {
+      // We need to re-evaluate this on every change detection cycle, because there are some
+      // error triggers that we can't subscribe to (e.g. parent form submissions). This means
+      // that whatever logic is in here has to be super lean or we risk destroying the performance.
+      this.updateErrorState();
+    }
+  }
+
 }

@@ -1,9 +1,9 @@
-import { ReactiveFormsModule, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatIconModule, MatFormFieldModule } from '@angular/material';
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormsModule, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 
-import { FileInputComponent } from './file-input.component';
 import { FileInput } from '../model/file-input.model';
+import { FileInputComponent } from './file-input.component';
 
 // function createComponent<T>(component: Type<T>,
 //   providers: Provider[] = [],
@@ -29,6 +29,26 @@ import { FileInput } from '../model/file-input.model';
 // return TestBed.createComponent<T>(component);
 // }
 
+/**
+* Shows error state on a control if it is touched and has any error.
+* Used as global ErrorStateMatcher for all tests.
+*/
+class FileInputSpecErrorStateMatcher implements ErrorStateMatcher {
+  public isErrorState(control: FormControl | null, _: FormGroupDirective | NgForm | null): boolean {
+    return !!(control && control.errors !== null && control.touched);
+  }
+}
+
+/**
+* Shows error state on a control with exactly two validation errors.
+* Used to change the ErrorStateMatcher of a single component.
+*/
+class OverrideErrorStateMatcher implements ErrorStateMatcher {
+  public isErrorState(control: FormControl | null, _: FormGroupDirective | NgForm | null): boolean {
+    return !!(control && control.errors && control.errors.length === 2);
+  }
+}
+
 describe('FileInputComponent', () => {
   let component: FileInputComponent;
   let fixture: ComponentFixture<FileInputComponent>;
@@ -46,7 +66,7 @@ describe('FileInputComponent', () => {
           MatButtonModule,
           MatIconModule
         ],
-        providers: [{ provide: NgControl, useValue: NG_VALUE_ACCESSOR }]
+        providers: [{ provide: NgControl, useValue: NG_VALUE_ACCESSOR }, { provide: ErrorStateMatcher, useClass: FileInputSpecErrorStateMatcher }]
       }).compileComponents();
     })
   );
@@ -150,5 +170,41 @@ describe('FileInputComponent', () => {
     spyOn(component, 'open').and.stub();
     fixture.debugElement.nativeElement.click();
     expect(component.open).toHaveBeenCalled();
+  });
+
+  it('should recognize all errorstate changes', () => {
+    spyOn(component.stateChanges, 'next');
+    component.ngControl = <any>{ control: <any>{ errors: null, touched: false } };
+    expect(component.errorState).toBeFalsy();
+    expect(component.stateChanges.next).not.toHaveBeenCalled();
+
+    fixture.detectChanges();
+    expect(component.errorState).toBeFalsy();
+    expect(component.stateChanges.next).not.toHaveBeenCalled();
+    component.ngControl = <any>{ control: <any>{ errors: ['some error'], touched: true } };
+
+    expect(component.stateChanges.next).not.toHaveBeenCalled();
+
+    fixture.detectChanges();
+    expect(component.errorState).toBeTruthy();
+    expect(component.stateChanges.next).toHaveBeenCalledTimes(1);
+  });
+
+  it('should use input ErrorStateMatcher over provided', () => {
+    component.ngControl = <any>{ control: <any>{ errors: ['some error'], touched: true } };
+
+    fixture.detectChanges();
+    expect(component.errorState).toBeTruthy();
+
+    component.errorStateMatcher = new OverrideErrorStateMatcher();
+    expect(component.errorState).toBeTruthy();
+
+    fixture.detectChanges();
+    expect(component.errorState).toBeFalsy();
+    component.ngControl = <any>{ control: <any>{ errors: ['some error', 'another error'] } };
+    expect(component.errorState).toBeFalsy();
+
+    fixture.detectChanges();
+    expect(component.errorState).toBeTruthy();
   });
 });
