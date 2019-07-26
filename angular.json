@@ -75,7 +75,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/demo/tsconfig.app.json", "apps/demo/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/demo/**"]
           }
         }
       }
@@ -95,7 +95,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/demo-e2e/**"]
           }
         }
       }
@@ -172,7 +172,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/demo/tsconfig.spec.json", "apps/demo/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/demo/**"]
           }
         }
       }
@@ -206,7 +206,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/material-file-input/tsconfig.lib.json", "libs/material-file-input/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/material-file-input/**"]
           }
         }
       }
