@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NxModule } from '@nrwl/nx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { CodeSampleComponent } from './code-sample/code-sample.component';
+import { MenuComponent } from './menu/menu.component';
+import { UsageComponent } from './usage/usage.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { AppearanceComponent } from './appearance/appearance.component';
 
 @NgModule({
   imports: [
@@ -24,11 +29,19 @@ import { CodeSampleComponent } from './code-sample/code-sample.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
+    MatSidenavModule,
     MatToolbarModule,
     // Lib Module
     MaterialFileInputModule
   ],
-  declarations: [AppComponent, CodeSampleComponent],
+  declarations: [
+    AppComponent,
+    AppearanceComponent,
+    CodeSampleComponent,
+    MenuComponent,
+    UsageComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

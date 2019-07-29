@@ -1,5 +1,10 @@
-mat-form-field {
-  width: 100%;
+.toolbar-title {
+  margin-left: 16px;
+}
+
+.sidenav-content {
+  height: calc(100vh - 64px);
+  overflow: auto;
 }
 
 .main {
