@@ -32,6 +32,8 @@
 
   <h2 id="validation">Input with validation: required and maxSize</h2>
 
+  <p>The maximum accepted file size in bytes (binary calculation: 2 ** x).</p>
+
   <app-code-sample [code]="advancedTs"></app-code-sample>
   <app-code-sample [code]="advanced"></app-code-sample>
 
@@ -66,6 +68,9 @@
   </mat-form-field>
 
   <h2 id="accept-type">Input with file type constraint (accept)</h2>
+
+  <p>The accept property matches the native <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#attr-accept" target="_blank">accept attribute</a>.
+  </p>
 
   <app-code-sample [code]="accept"></app-code-sample>
 

@@ -40,7 +40,16 @@ export class UsageComponent implements OnInit {
   }
 
   get advancedTs() {
-    return `constructor(private _fb: FormBuilder) {}
+    return `import { FileValidator } from 'ngx-material-file-input';
+
+    [...]
+
+    /**
+     * In this example, it's 100 MB (=100 * 2 ** 20).
+     */
+    readonly maxSize = 104857600;
+
+    constructor(private _fb: FormBuilder) {}
 
     ngOnInit() {
       this.formDoc = this._fb.group({
