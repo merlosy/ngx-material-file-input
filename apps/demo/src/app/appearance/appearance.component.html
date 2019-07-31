@@ -1,0 +1,64 @@
+<h2 id="appearance">Form field appearance variants</h2>
+<p>
+  File input appearance is fully compatible with <a
+    href="https://material.angular.io/components/form-field/overview#form-field-appearance-variants"
+    target="_blank">Angular Material form field appearance</a>.
+</p>
+<p class="warning">
+  There are significant differences between the legacy variant and the 3 newer ones (see link above). Especially,
+  "standard, fill, and outline appearances do not promote placeholders to labels." This means you'll need to add the
+  "mat-label" element if you want to show some text.
+</p>
+
+<form [formGroup]="formDoc" novalidate>
+
+  <h3>Legacy (default)</h3>
+
+  <app-code-sample [code]="legacyNoLabel"></app-code-sample>
+
+  <mat-form-field appearance="legacy">
+    <ngx-mat-file-input formControlName="legacy" placeholder="Basic legacy placeholder"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h3>Legacy (default) with mat-label</h3>
+
+  <app-code-sample [code]="legacy"></app-code-sample>
+
+  <mat-form-field appearance="legacy">
+    <mat-label>Basic legacy input</mat-label>
+    <ngx-mat-file-input formControlName="legacy" placeholder="Basic legacy placeholder"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h3>Standard</h3>
+
+  <app-code-sample [code]="standard"></app-code-sample>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Basic standard input</mat-label>
+    <ngx-mat-file-input formControlName="standard" placeholder="Basic standard placeholder"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h3>Fill</h3>
+
+  <app-code-sample [code]="fill"></app-code-sample>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Basic fill input</mat-label>
+    <ngx-mat-file-input formControlName="fill" placeholder="Basic fill placeholder"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h3>Outline</h3>
+
+  <app-code-sample [code]="outline"></app-code-sample>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Basic outline input</mat-label>
+    <ngx-mat-file-input formControlName="outline" placeholder="Basic outline placeholder"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+</form>

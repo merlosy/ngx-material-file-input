@@ -1,0 +1,106 @@
+<h1>Code samples</h1>
+
+<form [formGroup]="formDoc" (ngSubmit)="onSubmit(formDoc)" novalidate>
+
+  <h2 id="simple-input">Simple input</h2>
+
+  <app-code-sample [code]="simple"></app-code-sample>
+
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="basicfile" placeholder="Basic Input"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h2 id="clear-button">Input with clear button</h2>
+
+  <p>
+    This is a workaround for an issue with Firefox that doesn't triggers change event when the user cancels the upload.
+    With other browsers, it results in removing files from the input.
+  </p>
+
+  <app-code-sample [code]="removable"></app-code-sample>
+
+  <p>Add a file to reveal the clear button.</p>
+
+  <mat-form-field>
+    <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Removable Input">
+    </ngx-mat-file-input>
+    <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <h2 id="validation">Input with validation: required and maxSize</h2>
+
+  <p>The maximum accepted file size in bytes (binary calculation: 2 ** x).</p>
+
+  <app-code-sample [code]="advancedTs"></app-code-sample>
+  <app-code-sample [code]="advanced"></app-code-sample>
+
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="requiredfile" placeholder="Required input" valuePlaceholder="No file selected"
+      required></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+    <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('required')"> Please select a file </mat-error>
+    <mat-error *ngIf="formDoc.get('requiredfile')?.hasError('maxContentSize')">
+      The total size must not exceed {{ formDoc.get('requiredfile')?.getError('maxContentSize').maxSize | byteFormat }}
+      ({{ formDoc.get('requiredfile')?.getError('maxContentSize').actualSize | byteFormat }}).
+    </mat-error>
+  </mat-form-field>
+  <pre>{{ formDoc.get('requiredfile')?.errors | json }}</pre>
+
+  <h2 id="disabled-state">Disabled input</h2>
+
+  <app-code-sample [code]="disabledTs"></app-code-sample>
+
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="disabledfile" placeholder="Disabled Input"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h2 id="multiple-files">Multiple input</h2>
+
+  <app-code-sample [code]="multiple"></app-code-sample>
+
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="multiplefile" placeholder="Multiple inputs" multiple></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h2 id="accept-type">Input with file type constraint (accept)</h2>
+
+  <p>The accept property matches the native <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#attr-accept" target="_blank">accept attribute</a>.
+  </p>
+
+  <app-code-sample [code]="accept"></app-code-sample>
+
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="acceptfile" placeholder="PDF file only" [accept]="'.pdf'"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <h2 id="error-state-matcher">Input with custom ErrorStateMatcher</h2>
+
+  <p>An ErrorStateMatcher defines when a control displays the error message. A custom ErrorStateMatcher can for example
+    be used to display validations on untouched controls.
+    ErrorStateMatchers can either be defined globally or for single controls (seen in the following example).
+  </p>
+  <p>Learn more about <a
+      href="https://material.angular.io/components/input/overview#changing-when-error-messages-are-shown"
+      target="_blank">custom ErrorStateMatcher</a>
+  </p>
+
+  <app-code-sample [code]="errorStateTs"></app-code-sample>
+  <app-code-sample [code]="errorState"></app-code-sample>
+
+  <mat-form-field>
+    <ngx-mat-file-input formControlName="errorStateFile" placeholder="Shows error for PDF"
+      [errorStateMatcher]="errorStateMatcher"></ngx-mat-file-input>
+  </mat-form-field>
+
+  <h2 id="pipe-byteformat">ByteFormat pipe</h2>
+
+  <app-code-sample [code]="bytePipe"></app-code-sample>
+
+  <p>A file size of {{ maxSize }} gives a human readable size of {{ maxSize | byteFormat }}</p>
+</form>
