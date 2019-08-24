@@ -34,10 +34,9 @@ jobs:
     - stage: validate
       name: "Unit tests and Coverage"
       node_js:
-        - '8'
-        - '9'
         - '10'
         - '11'
+        - '12'
       before_script:
         - 'sudo chown root /opt/google/chrome/chrome-sandbox'
         - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'

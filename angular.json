@@ -18,8 +18,13 @@
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
-            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
-            "styles": ["apps/demo/src/styles.scss"],
+            "assets": [
+              "apps/demo/src/favicon.ico",
+              "apps/demo/src/assets"
+            ],
+            "styles": [
+              "apps/demo/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -66,16 +71,27 @@
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
-            "styles": ["apps/demo/src/styles.scss"],
+            "styles": [
+              "apps/demo/src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"]
+            "assets": [
+              "apps/demo/src/favicon.ico",
+              "apps/demo/src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/demo/tsconfig.app.json", "apps/demo/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "apps/demo/tsconfig.app.json",
+              "apps/demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/demo/**"
+            ]
           }
         }
       }
@@ -95,7 +111,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/demo-e2e/**"
+            ]
           }
         }
       }
@@ -115,8 +134,13 @@
             "main": "apps/demo/src/main.ts",
             "tsConfig": "apps/demo/tsconfig.packaged.json",
             "polyfills": "apps/demo/src/polyfills.ts",
-            "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"],
-            "styles": ["apps/demo/src/styles.scss"],
+            "assets": [
+              "apps/demo/src/assets",
+              "apps/demo/src/favicon.ico"
+            ],
+            "styles": [
+              "apps/demo/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -164,15 +188,26 @@
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
             "scripts": [],
-            "styles": ["apps/demo/src/styles.scss"],
-            "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"]
+            "styles": [
+              "apps/demo/src/styles.scss"
+            ],
+            "assets": [
+              "apps/demo/src/assets",
+              "apps/demo/src/favicon.ico"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/demo/tsconfig.spec.json", "apps/demo/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "apps/demo/tsconfig.spec.json",
+              "apps/demo/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/demo/**"
+            ]
           }
         }
       }
@@ -205,8 +240,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/material-file-input/tsconfig.lib.json", "libs/material-file-input/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "libs/material-file-input/tsconfig.lib.json",
+              "libs/material-file-input/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/material-file-input/**"
+            ]
           }
         }
       }
@@ -218,6 +259,6 @@
       "typescriptMismatch": false,
       "versionMismatch": false
     },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/angular"
   }
 }
