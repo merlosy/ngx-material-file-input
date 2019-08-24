@@ -6,8 +6,8 @@
 </mat-toolbar>
 
 <mat-sidenav-container autosize>
-  <mat-sidenav #sidenav [opened]="menuOpened" mode="side">
-    <app-menu></app-menu>
+  <mat-sidenav #sidenav [opened]="menuOpened" [mode]="menuDisplayMode">
+    <app-menu (navigate)="onNavigate($event)"></app-menu>
   </mat-sidenav>
 
   <div class="sidenav-content">

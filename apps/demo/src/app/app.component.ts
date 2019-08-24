@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm, FormGroupDirective } from '@angular/forms';
-import { FileValidator } from 'ngx-material-file-input';
-import { ErrorStateMatcher } from '@angular/material';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,27 @@ export class AppComponent implements OnInit {
 
   menuOpened = true;
 
+  menuDisplayMode: 'over' | 'push' | 'side';
+
+  constructor(public breakpointObserver: BreakpointObserver){}
+
   ngOnInit(): void {
+    // Improve experience for mobile demo
+    this.breakpointObserver
+      .observe('(max-width: 992px)')
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+            this.menuDisplayMode = 'over';
+        } else {
+          this.menuDisplayMode = 'side';
+        }
+      });
+  }
+
+  onNavigate() {
+    if (this.menuDisplayMode === 'over') {
+      this.menuOpened = false;
+    }
   }
 
 }
