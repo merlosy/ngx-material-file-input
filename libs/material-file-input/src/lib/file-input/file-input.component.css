@@ -1,17 +1,16 @@
 :host {
   display: inline-block;
+  width: 100%;
 }
 :host:not(.file-input-disabled) {
     cursor: pointer;
 }
 
 input {
-    width: 0px;
-    height: 0px;
     opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 .filename {
