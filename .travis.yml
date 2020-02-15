@@ -20,7 +20,7 @@ before_install:
   # Install latest chrome.
   - export CHROME_BIN=chromium-browser
 install:
-  - npm install
+  - npm ci
 
 jobs:
   include:
