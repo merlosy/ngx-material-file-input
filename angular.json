@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "demo": {
-      "root": "apps/demo/",
+      "root": "apps/demo",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
@@ -97,7 +97,8 @@
       }
     },
     "demo-e2e": {
-      "root": "apps/demo-e2e/",
+      "root": "apps/demo-e2e",
+      "sourceRoot": "apps/demo-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
@@ -120,7 +121,7 @@
       }
     },
     "demo-packaged": {
-      "root": "apps/demo/",
+      "root": "apps/demo-packaged",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",

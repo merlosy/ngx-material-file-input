@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.packaged.json",
+  "compilerOptions": {
+    "outDir": "../../dist/apps/demo-packaged"
+  },
+  "include": [
+    "../demo/**/*.ts"
+  ],
+  "exclude": [
+    "../demo/src/test.ts",
+    "../demo/**/*.spec.ts"
+  ]
+}
