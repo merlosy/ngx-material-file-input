@@ -121,7 +121,7 @@
       }
     },
     "demo-packaged": {
-      "root": "apps/demo",
+      "root": "apps/demo-packaged",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
