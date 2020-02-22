@@ -31,7 +31,8 @@
     "update:check": "./node_modules/.bin/nx update:check",
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "dep-graph": "./node_modules/.bin/nx dep-graph",
-    "help": "./node_modules/.bin/nx help"
+    "help": "./node_modules/.bin/nx help",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": false,
   "dependencies": {
@@ -49,7 +50,7 @@
     "@ngrx/router-store": "^8.2.0",
     "@ngrx/store": "^8.2.0",
     "@ngrx/store-devtools": "^8.2.0",
-    "@nrwl/angular": "8.12.4",
+    "@nrwl/angular": "9.0.2",
     "core-js": "^3.2.1",
     "rxjs": "^6.5.2",
     "tslib": "^1.10.0",
@@ -63,7 +64,7 @@
     "@angular/compiler-cli": "^9.0.2",
     "@angular/language-service": "^9.0.2",
     "@ngrx/schematics": "^8.2.0",
-    "@nrwl/workspace": "8.12.4",
+    "@nrwl/workspace": "9.0.2",
     "@types/jasmine": "^3.4.0",
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "^12.11.1",
