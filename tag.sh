@@ -58,7 +58,7 @@ if (( ${CURV[0]} == ${NEWV[0]} )); then
         fi
     elif (( ${CURV[1]} + 1 == ${NEWV[1]} )); then
         # Testing minor version
-        if (( ${CURV[2]} == 0 )); then
+        if (( ${NEWV[2]} == 0 )); then
             echo "New MINOR version"
         else
             echo "/!\ Invalid minor version, 0 needed"

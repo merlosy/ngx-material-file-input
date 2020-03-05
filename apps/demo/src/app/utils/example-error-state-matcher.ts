@@ -1,4 +1,4 @@
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, NgForm, FormGroupDirective } from '@angular/forms';
 
 /**

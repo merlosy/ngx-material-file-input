@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "demo": {
-      "root": "apps/demo/",
+      "root": "apps/demo",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
@@ -29,6 +30,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "apps/demo/src/environments/environment.ts",
@@ -97,7 +104,8 @@
       }
     },
     "demo-e2e": {
-      "root": "apps/demo-e2e/",
+      "root": "apps/demo-e2e",
+      "sourceRoot": "apps/demo-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
@@ -120,7 +128,7 @@
       }
     },
     "demo-packaged": {
-      "root": "apps/demo/",
+      "root": "apps/demo-packaged",
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
@@ -129,6 +137,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/apps/demo-packaged",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
@@ -145,6 +154,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -225,7 +240,8 @@
           },
           "configurations": {
             "production": {
-              "project": "libs/material-file-input/ng-package.prod.json"
+              "project": "libs/material-file-input/ng-package.prod.json",
+              "tsConfig": "libs/material-file-input/tsconfig.lib.prod.json"
             }
           }
         },

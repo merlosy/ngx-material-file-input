@@ -3,11 +3,11 @@
   "compilerOptions": {
     "outDir": "../../dist/apps/demo-packaged"
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
   "include": [
-    "**/*.d.ts"
+    "../demo/**/*.ts"
+  ],
+  "exclude": [
+    "../demo/src/test.ts",
+    "../demo/**/*.spec.ts"
   ]
 }
