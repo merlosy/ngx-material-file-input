@@ -1,7 +1,22 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "directive-selector": [true, "attribute", "material-file-input", "camelCase"],
-    "component-selector": [true, "element", "material-file-input", "kebab-case"]
+    "directive-selector": [
+      true,
+      "attribute",
+      "material-file-input",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "material-file-input",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": [
+      "!**/*"
+    ]
   }
 }
