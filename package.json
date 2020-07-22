@@ -50,7 +50,7 @@
     "@ngrx/router-store": "9.0.0",
     "@ngrx/store": "9.0.0",
     "@ngrx/store-devtools": "9.0.0",
-    "@nrwl/angular": "9.1.2",
+    "@nrwl/angular": "9.2.0",
     "core-js": "^3.2.1",
     "rxjs": "^6.5.2",
     "tslib": "^1.10.0",
