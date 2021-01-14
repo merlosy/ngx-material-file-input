@@ -8,6 +8,7 @@
     "clean": "rm -rf dist",
     "build": "ng build",
     "build:lib": "ng-packagr -p libs/material-file-input/package.json && cp README.md dist/material-file-input",
+    "prepare": "npm run build:lib",
     "test": "ng test",
     "test:once": "ng test material-file-input --watch=false",
     "lint": "./node_modules/.bin/nx workspace-lint && ng lint",
