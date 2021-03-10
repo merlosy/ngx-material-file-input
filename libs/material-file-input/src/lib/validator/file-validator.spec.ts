@@ -43,4 +43,18 @@ describe('FileValidator', () => {
       expect(control.valid).toBeTruthy();
     });
   });
+  describe('allowedExtentions', () => {
+    it('should field be valid', () => {
+      const data = new FileInput([new File(['test'], 'test.pdf')]);
+      const control = new FormControl(data, [FileValidator.allowedExtensions(['pdf', 'png'])]);
+      expect(control.value).toBe(data);
+      expect(control.valid).toBeTruthy();
+    });
+    it('should field be invalid', () => {
+      const data = new FileInput([new File(['test'], 'test.txt')]);
+      const control = new FormControl(data, [FileValidator.allowedExtensions(['pdf', 'png'])]);
+      expect(control.value).toBe(data);
+      expect(control.invalid).toBeTruthy();
+    });
+  });
 });

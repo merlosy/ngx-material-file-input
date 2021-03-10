@@ -81,6 +81,7 @@ _Output:_ 100 MB
 | Name                                           | Description                                     | Error structure                           |
 | ---------------------------------------------- | ----------------------------------------------- | ----------------------------------------- |
 | maxContentSize(value: `number`): `ValidatorFn` | Limit the total file(s) size to the given value | `{ actualSize: number, maxSize: number }` |
+| allowedExtensions(extentions: `string[]`): `ValidatorFn` | Handles allowed file types by controlling whether some specific extensions matches with the uploaded file type | `{ allowedExtentions: allowedExtentions[] }` |
 
 # About me
 
