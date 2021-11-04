@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ExampleErrorStateMatcher } from '../utils/example-error-state-matcher';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileValidator } from 'ngx-material-file-input';
+import { ExampleErrorStateMatcher } from '../utils/example-error-state-matcher';
 
 @Component({
   selector: 'app-usage',
