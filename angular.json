@@ -83,13 +83,6 @@
             "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"]
           },
           "outputs": ["coverage/apps/demo"]
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/demo/tsconfig.app.json", "apps/demo/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!apps/demo/**/*"]
-          }
         }
       },
       "tags": []
@@ -104,13 +97,6 @@
           "options": {
             "protractorConfig": "apps/demo-e2e/protractor.conf.js",
             "devServerTarget": "demo:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/demo-e2e/**/*"]
           }
         }
       },
@@ -196,13 +182,6 @@
             "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"]
           },
           "outputs": ["coverage/apps/demo-packaged"]
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/demo/tsconfig.spec.json", "apps/demo/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**", "!apps/demo/**"]
-          }
         }
       },
       "tags": []
@@ -233,13 +212,6 @@
             "karmaConfig": "libs/material-file-input/karma.conf.js"
           },
           "outputs": ["coverage/libs/material-file-input"]
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/material-file-input/tsconfig.lib.json", "libs/material-file-input/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/material-file-input/**/*"]
-          }
         }
       },
       "tags": []
