@@ -13,20 +13,20 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
-            "assets": [
-              "apps/demo/src/favicon.ico",
-              "apps/demo/src/assets"
-            ],
-            "styles": [
-              "apps/demo/src/styles.scss"
-            ],
-            "scripts": []
+            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
+            "styles": ["apps/demo/src/styles.scss"],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -45,14 +45,14 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
             }
-          }
+          },
+          "defaultConfiguration": "",
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -78,30 +78,14 @@
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
-            "styles": [
-              "apps/demo/src/styles.scss"
-            ],
+            "styles": ["apps/demo/src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "apps/demo/src/favicon.ico",
-              "apps/demo/src/assets"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/demo/tsconfig.app.json",
-              "apps/demo/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo/**"
-            ]
-          }
+            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"]
+          },
+          "outputs": ["coverage/apps/demo"]
         }
-      }
+      },
+      "tags": []
     },
     "demo-e2e": {
       "root": "apps/demo-e2e",
@@ -114,18 +98,9 @@
             "protractorConfig": "apps/demo-e2e/protractor.conf.js",
             "devServerTarget": "demo:serve"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo-e2e/**"
-            ]
-          }
         }
-      }
+      },
+      "tags": []
     },
     "demo-packaged": {
       "root": "apps/demo-packaged",
@@ -137,20 +112,20 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/apps/demo-packaged",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "tsConfig": "apps/demo/tsconfig.packaged.json",
             "polyfills": "apps/demo/src/polyfills.ts",
-            "assets": [
-              "apps/demo/src/assets",
-              "apps/demo/src/favicon.ico"
-            ],
-            "styles": [
-              "apps/demo/src/styles.scss"
-            ],
-            "scripts": []
+            "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"],
+            "styles": ["apps/demo/src/styles.scss"],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -163,9 +138,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -176,7 +149,9 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": "",
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -203,29 +178,13 @@
             "tsConfig": "apps/demo/tsconfig.spec.json",
             "karmaConfig": "apps/demo/karma.conf.js",
             "scripts": [],
-            "styles": [
-              "apps/demo/src/styles.scss"
-            ],
-            "assets": [
-              "apps/demo/src/assets",
-              "apps/demo/src/favicon.ico"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/demo/tsconfig.spec.json",
-              "apps/demo/tsconfig.app.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo/**"
-            ]
-          }
+            "styles": ["apps/demo/src/styles.scss"],
+            "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"]
+          },
+          "outputs": ["coverage/apps/demo-packaged"]
         }
-      }
+      },
+      "tags": []
     },
     "material-file-input": {
       "root": "libs/material-file-input",
@@ -233,7 +192,7 @@
       "projectType": "library",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/material-file-input/tsconfig.lib.json",
             "project": "libs/material-file-input/ng-package.json"
@@ -251,30 +210,11 @@
             "main": "libs/material-file-input/src/test.ts",
             "tsConfig": "libs/material-file-input/tsconfig.spec.json",
             "karmaConfig": "libs/material-file-input/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/material-file-input/tsconfig.lib.json",
-              "libs/material-file-input/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/material-file-input/**"
-            ]
-          }
+          },
+          "outputs": ["coverage/libs/material-file-input"]
         }
-      }
+      },
+      "tags": []
     }
-  },
-  "defaultProject": "demo",
-  "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
-    "defaultCollection": "@nrwl/angular"
   }
 }
