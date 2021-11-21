@@ -1,6 +1,5 @@
-import { NgModule, Injector } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NxModule } from '@nrwl/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
@@ -21,7 +20,6 @@ import { AppearanceComponent } from './appearance/appearance.component';
 @NgModule({
   imports: [
     BrowserModule,
-    NxModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     // Material modules

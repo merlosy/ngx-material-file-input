@@ -1,21 +1,23 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "downlevelIteration": true,
+    "rootDir": ".",
     "importHelpers": true,
     "module": "esnext",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "target": "es2015",
-    "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
       "ngx-material-file-input": ["libs/material-file-input/src/index.ts"]
-    },
-    "rootDir": "."
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -10,7 +10,7 @@ export const NGX_MAT_FILE_INPUT_CONFIG = new InjectionToken<FileInputConfig>(
 /**
  * Provide additional configuration to dynamically customize the module injection
  */
-export class FileInputConfig {
+export interface FileInputConfig {
   /**
    * Unit used with the ByteFormatPipe, default value is *Byte*.
    * The first letter is used for the short notation.
