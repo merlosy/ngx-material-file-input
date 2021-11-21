@@ -1,11 +1,20 @@
 {
   "npmScope": "material-file-input",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*",
-    "tsconfig.base.json": "*"
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    ".eslintrc.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -15,15 +24,13 @@
       }
     }
   },
-  "affected": {
-    "defaultBase": "master"
-  },
-  "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
-    "defaultCollection": "@nrwl/angular"
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   },
   "defaultProject": "demo"
 }
