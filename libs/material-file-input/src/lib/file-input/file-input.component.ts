@@ -25,9 +25,9 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
 
   private _placeholder: string;
   private _required = false;
+  private _multiple: boolean;
 
   @Input() valuePlaceholder: string;
-  @Input() multiple: boolean;
   @Input() accept: string | null = null;
   @Input() errorStateMatcher: ErrorStateMatcher;
 
@@ -47,6 +47,15 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
       this.writeValue(fileInput);
       this.stateChanges.next();
     }
+  }
+
+  @Input()
+  get multiple(): boolean {
+    return this._multiple;
+  }
+  set multiple(value: boolean | string) {
+    this._multiple = coerceBooleanProperty(value);
+    this.stateChanges.next();
   }
 
   @Input()
@@ -71,10 +80,10 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
   }
 
   @Input()
-  get required() {
+  get required(): boolean {
     return this._required;
   }
-  set required(req: boolean) {
+  set required(req: boolean | string) {
     this._required = coerceBooleanProperty(req);
     this.stateChanges.next();
   }
@@ -87,7 +96,7 @@ export class FileInputComponent extends FileInputMixinBase implements MatFormFie
   get disabled(): boolean {
     return this._elementRef.nativeElement.disabled;
   }
-  set disabled(dis: boolean) {
+  set disabled(dis: boolean | string) {
     this.setDisabledState(coerceBooleanProperty(dis));
     this.stateChanges.next();
   }
