@@ -33,9 +33,6 @@ jobs:
         - npm run lint
     - stage: validate
       name: "Unit tests and Coverage"
-      node_js:
-        - '14'
-        - '16'
       before_script:
         - 'sudo chown root /opt/google/chrome/chrome-sandbox'
         - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
