@@ -10,7 +10,7 @@
     "build:lib": "ng-packagr -p libs/material-file-input/package.json && cp README.md dist/material-file-input",
     "test": "ng test",
     "test:once": "ng test material-file-input --watch=false",
-    "lint": "./node_modules/.bin/nx workspace-lint && ./node_modules/.bin/nx lint",
+    "lint": "./node_modules/.bin/nx workspace-lint && nx lint && nx lint material-file-input",
     "e2e": "ng e2e",
     "build:demo": "ng build --project=demo-packaged --configuration production --base-href /ngx-material-file-input/",
     "commit:demo": "git add -f dist/apps/demo-packaged && git commit -m \"update demo\"",
