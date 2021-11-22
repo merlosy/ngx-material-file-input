@@ -45,7 +45,7 @@ jobs:
         - npm install coveralls
       script:
         - echo "> Running tests against $(node -v)"
-        - npm run test:once -- --code-coverage
+        - npm run test:once -- --code-coverage --verbose
       # after_success:
       #   - cat ./coverage/libs/material-file-input/lcov.info | ./node_modules/coveralls/bin/coveralls.js
     # *--------------------*
