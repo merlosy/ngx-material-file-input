@@ -17,6 +17,7 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../../coverage'),
+      subdir: '.',
       reports: [
         { type: 'html' },
         { type: 'text-summary' }
@@ -28,6 +29,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+    restartOnFileChange: true
   });
 };

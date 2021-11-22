@@ -46,8 +46,8 @@ jobs:
       script:
         - echo "> Running tests against $(node -v)"
         - npm run test:once -- --code-coverage
-      after_success:
-        - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      # after_success:
+      #   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
     # *--------------------*
     # |       DEPLOY       |
     # *--------------------*
