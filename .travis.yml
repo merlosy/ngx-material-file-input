@@ -47,7 +47,7 @@ jobs:
         - echo "> Running tests against $(node -v)"
         - npm run test:once -- --code-coverage
       # after_success:
-      #   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      #   - cat ./coverage/libs/material-file-input/lcov.info | ./node_modules/coveralls/bin/coveralls.js
     # *--------------------*
     # |       DEPLOY       |
     # *--------------------*
