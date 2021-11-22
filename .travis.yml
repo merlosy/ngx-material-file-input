@@ -12,6 +12,15 @@ addons:
 stages:
   - validate
   - deploy
+env:
+  globals:
+  - COVERALLS_PARALLEL=true
+  - COVERALLS_GIT_BRANCH=$TRAVIS_BRANCH
+  - COVERALLS_SERVICE_NAME=travis-pro
+  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN
+notifications:
+  webhooks: https://coveralls.io/webhook?repo_token=$COVERALLS_REPO_TOKEN
+  email: $EMAIL
 
 before_install:
   # Use a virtual display.
