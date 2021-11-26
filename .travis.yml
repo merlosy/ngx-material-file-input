@@ -36,8 +36,6 @@ jobs:
     - stage: validate
       name: "Unit tests and Coverage"
       before_script:
-        # - 'sudo chown root /opt/google/chrome/chrome-sandbox'
-        # - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
         - npm install coveralls
       script:
         - echo "> Running tests against $(node -v)"
