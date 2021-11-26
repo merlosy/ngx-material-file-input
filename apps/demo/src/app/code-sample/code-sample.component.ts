@@ -13,6 +13,4 @@ export class CodeSampleComponent {
   set code(value: string) {
     this.innerCode = value;
   }
-
-  constructor() {}
 }

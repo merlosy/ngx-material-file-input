@@ -9,7 +9,6 @@ import { FileInput } from '../model/file-input.model';
 import { FileInputMixinBase } from './file-input-mixin';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'ngx-mat-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.css'],

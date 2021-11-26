@@ -30,7 +30,9 @@ export class UsageComponent implements OnInit {
     });
   }
 
-  onSubmit(form: FormGroup) {}
+  onSubmit(form: FormGroup) {
+    // Send file
+  }
 
   get simple() {
     return `<mat-form-field>
