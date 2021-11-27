@@ -1,6 +1,6 @@
 {
   "name": "material-file-input",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -17,7 +17,7 @@
     "push:demo": "git subtree push --prefix dist/apps/demo-packaged origin gh-pages",
     "erase:demo": "git push origin --delete gh-pages",
     "deploy:demo": "npm run commit:demo && npm run push:demo",
-    "publish:lib": "npm publish dist/material-file-input",
+    "publish:lib": "npm publish ./dist/material-file-input",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
     "affected:build": "./node_modules/.bin/nx affected:build",
     "affected:e2e": "./node_modules/.bin/nx affected:e2e",
