@@ -17,10 +17,10 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@angular/cdk": "^13.0.0",
-    "@angular/common": "^13.0.0",
-    "@angular/core": "^13.0.0",
-    "@angular/material": "^13.0.0"
+    "@angular/cdk": "^12.0.0 || ^13.0.0",
+    "@angular/common": "^12.0.0 || ^13.0.0",
+    "@angular/core": "^12.0.0 || ^13.0.0",
+    "@angular/material": "^12.0.0 || ^13.0.0"
   },
   "ngPackage": {
     "lib": {
