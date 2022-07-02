@@ -7,7 +7,7 @@
     "start": "./node_modules/.bin/ng serve",
     "clean": "rm -rf dist",
     "build": "ng build",
-    "build:lib": "ng-packagr -p libs/material-file-input/package.json && cp README.md dist/material-file-input",
+    "build:lib": "ng-packagr -p libs/material-file-input/ng-package.prod.json && cp README.md dist/material-file-input/",
     "test": "nx test",
     "test:once": "nx test material-file-input --watch=false --browsers ChromeHeadless",
     "lint": "./node_modules/.bin/nx workspace-lint && nx lint && nx lint material-file-input",
