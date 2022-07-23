@@ -2,9 +2,9 @@ name: Validate
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   lint:

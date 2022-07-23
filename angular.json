@@ -1,6 +1,5 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "version": 2,
   "newProjectRoot": "projects",
   "projects": {
     "demo": {
@@ -8,10 +7,10 @@
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "executor": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/demo",
@@ -58,7 +57,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "demo:build:production"
@@ -70,22 +69,19 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "demo:build"
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/demo/src/**/*.ts",
-              "apps/demo/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/demo/src/**/*.ts", "apps/demo/src/**/*.html"]
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "executor": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/demo/src/test.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -104,9 +100,9 @@
       "root": "apps/demo-e2e",
       "sourceRoot": "apps/demo-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/demo-e2e/cypress.json",
             "devServerTarget": "demo:serve:development"
@@ -118,7 +114,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
@@ -133,10 +129,10 @@
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "executor": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/demo-packaged",
             "index": "apps/demo/src/index.html",
@@ -180,7 +176,7 @@
           "outputs": ["{options.outputPath}"]
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "demo-packaged:build"
           },
@@ -191,13 +187,13 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "demo-packaged:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "executor": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/demo/src/../../../test.js",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -216,9 +212,9 @@
       "root": "libs/material-file-input",
       "sourceRoot": "libs/material-file-input/src",
       "projectType": "library",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "executor": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/material-file-input/tsconfig.lib.json",
             "project": "libs/material-file-input/ng-package.json"
@@ -231,7 +227,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "executor": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/material-file-input/src/test.ts",
             "tsConfig": "libs/material-file-input/tsconfig.spec.json",
@@ -240,12 +236,9 @@
           "outputs": ["coverage/libs/material-file-input"]
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/material-file-input/src/**/*.ts",
-              "libs/material-file-input/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/material-file-input/src/**/*.ts", "libs/material-file-input/src/**/*.html"]
           }
         }
       },

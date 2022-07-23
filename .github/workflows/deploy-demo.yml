@@ -2,7 +2,7 @@ name: Deploy demo app
 
 on:
   push:
-    branches: [ master, chore/gh-actions ]
+    branches: [master, chore/gh-actions]
 
 jobs:
   lint:

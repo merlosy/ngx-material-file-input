@@ -3,7 +3,7 @@ name: Deploy to NPM
 on:
   push:
     tags:
-      - "*"
+      - '*'
     branches:
       - master
 
@@ -33,8 +33,8 @@ jobs:
       - name: Replace lib version
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          find: "version: \"${{ steps.lib_version.outputs.current-version }}"
-          replace: "version: \"${{ steps.tag_version.outputs.VERSION }}"
+          find: 'version: "${{ steps.lib_version.outputs.current-version }}'
+          replace: 'version: "${{ steps.tag_version.outputs.VERSION }}'
       - name: Set version for monorepo root
         run: npm --no-git-tag-version version "${{ steps.tag_version.outputs.VERSION }}"
 
