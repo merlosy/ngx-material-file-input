@@ -25,6 +25,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci --no-audit
       - run: npm run lint
+
   unit-test:
     runs-on: ubuntu-latest
     strategy:
@@ -42,6 +43,8 @@ jobs:
         with:
           name: material-file-input-${{ matrix.node }}-coverage
           path: coverage/libs/material-file-input
+          retention-days: 7
+
   build-lib:
     runs-on: ubuntu-latest
     steps:
@@ -55,6 +58,9 @@ jobs:
         with:
           name: material-file-input-build
           path: dist/material-file-input
+          if-no-files-found: error
+          retention-days: 7
+
   build-demo:
     needs: build-lib
     runs-on: ubuntu-latest
@@ -69,4 +75,11 @@ jobs:
           name: material-file-input-build
           path: dist/material-file-input
       - run: npm run build:demo
+      - name: Upload packaged demo
+        uses: actions/upload-artifact@v3
+        with:
+          name: demo-build
+          path: dist/apps/demo-packaged
+          if-no-files-found: error
+          retention-days: 7
 
