@@ -5,7 +5,7 @@ on:
     branches: [master, chore/gh-actions]
 
 jobs:
-  lint:
+  deploy-ghpages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
