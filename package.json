@@ -76,7 +76,7 @@
     "@typescript-eslint/parser": "~5.18.0",
     "codelyzer": "^6.0.0",
     "cypress": "^9.7.0",
-    "eslint": "7.32.0",
+    "eslint": "8.20.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-ngrx": "^1.47.0",
