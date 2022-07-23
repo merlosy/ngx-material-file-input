@@ -8,8 +8,8 @@ on:
   workflow_call:
   workflow_run:
     workflows: ['main-flow']
-    # types: [requested]
-    # branches: [master]
+    types: [requested]
+    branches: [master]
 
 jobs:
   lint:
