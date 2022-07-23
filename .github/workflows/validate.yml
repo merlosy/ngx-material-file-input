@@ -5,6 +5,7 @@ on:
     branches: [master]
   push:
     branches: ['*']
+  workflow_call:
   workflow_run:
     workflows: ['main-flow']
     # types: [requested]
