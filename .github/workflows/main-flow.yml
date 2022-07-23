@@ -1,11 +1,14 @@
-name: Deploy demo app
+name: Build and deploy demo app
 
 on:
   push:
     branches: [master, chore/gh-actions]
 
 jobs:
+  check:
+    uses: ./.github/workflows/validate.yml
   deploy-ghpages:
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

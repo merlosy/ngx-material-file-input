@@ -5,6 +5,10 @@ on:
     branches: [master]
   push:
     branches: ['*']
+  workflow_run:
+    workflows: ['main-flow']
+    # types: [requested]
+    # branches: [master]
 
 jobs:
   lint:
@@ -33,3 +37,22 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci --no-audit
       - run: npm run test:once -- --code-coverage
+  build-lib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci --no-audit
+      - run: npm run build:lib
+  build-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci --no-audit
+      - run: npm run build:demo
+
