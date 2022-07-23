@@ -38,6 +38,10 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci --no-audit
       - run: npm run test:once -- --code-coverage
+      - uses: actions/upload-artifact@v3
+        with:
+          name: material-file-input-${{ matrix.node }}-coverage
+          path: coverage/libs/material-file-input
   build-lib:
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +51,12 @@ jobs:
           node-version: 16
       - run: npm ci --no-audit
       - run: npm run build:lib
+      - uses: actions/upload-artifact@v3
+        with:
+          name: material-file-input-build
+          path: dist/material-file-input
   build-demo:
+    needs: build-lib
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -55,5 +64,9 @@ jobs:
         with:
           node-version: 16
       - run: npm ci --no-audit
+      - uses: actions/download-artifact@v3
+        with:
+          name: material-file-input-build
+          path: dist/material-file-input
       - run: npm run build:demo
 
