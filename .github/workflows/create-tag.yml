@@ -9,8 +9,11 @@ on:
         default: 'patch'
         type: choice
         options:
+          - prepatch
           - patch
+          - preminor
           - minor
+          - premajor
           - major
 
 jobs:
@@ -29,7 +32,7 @@ jobs:
           node-version: 16
       # Compute new version for monorepo (not tagged)
       - name: Set version for monorepo root
-        run: npm --no-git-tag-version version "${{ github.event.inputs.version }}"
+        run: npm --no-git-tag-version version "${{ github.event.inputs.increment }}"
       - name: Get newly set monorepo version
         id: repo_version
         uses: martinbeentjes/npm-get-version-action@v1.2.3
@@ -42,9 +45,9 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
           find: 'version: "${{ steps.lib_version.outputs.current-version }}'
-          replace: 'version: "${{ steps.repo_version.outputs.VERSION }}'
+          replace: 'version: "${{ steps.repo_version.outputs.current-version }}'
       # Apply changes
       - run: git add package.json package-lock.json libs/material-file-input/package.json
-      - run: git commit -m "Release version ${{ steps.repo_version.outputs.VERSION }}"
-      - run: git tag -a "v${{ steps.repo_version.outputs.VERSION }}" -m "Tag version ${{ steps.repo_version.outputs.VERSION }}"
+      - run: git commit -m "Release version ${{ steps.repo_version.outputs.current-version }}"
+      - run: git tag -a "v${{ steps.repo_version.outputs.current-version }}" -m "Tag version ${{ steps.repo_version.outputs.current-version }}"
       - run: git push --tags
