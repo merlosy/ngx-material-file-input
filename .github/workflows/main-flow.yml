@@ -1,0 +1,27 @@
+name: Build and deploy demo app
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  check:
+    uses: ./.github/workflows/validate.yml
+  deploy-ghpages:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci --no-audit
+      - run: npm run build:lib
+      - run: npm run build:demo
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: dist/apps/demo-packaged
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

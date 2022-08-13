@@ -1,0 +1,50 @@
+name: Create new tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      increment:
+        description: 'Increment for version'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  check:
+    uses: ./.github/workflows/validate.yml
+  create-tag:
+    runs-on: ubuntu-latest
+    needs: check
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      # Compute new version for monorepo (not tagged)
+      - name: Set version for monorepo root
+        run: npm --no-git-tag-version version "${{ github.event.inputs.version }}"
+      - name: Get newly set monorepo version
+        id: repo_version
+        uses: martinbeentjes/npm-get-version-action@v1.2.3
+      - name: Get current lib version
+        id: lib_version
+        uses: martinbeentjes/npm-get-version-action@v1.2.3
+        with:
+          path: libs/material-file-input
+      - name: Replace lib version with new
+        uses: jacobtomlinson/gha-find-replace@2.0.0
+        with:
+          find: 'version: "${{ steps.lib_version.outputs.current-version }}'
+          replace: 'version: "${{ steps.repo_version.outputs.VERSION }}'
+      # Apply changes
+      - run: git add package.json package-lock.json libs/material-file-input/package.json
+      - run: git commit -m "Release version ${{ steps.repo_version.outputs.VERSION }}"
+      - run: git tag -a "v${{ steps.repo_version.outputs.VERSION }}" -m "Tag version ${{ steps.repo_version.outputs.VERSION }}"
+      - run: git push --tags
