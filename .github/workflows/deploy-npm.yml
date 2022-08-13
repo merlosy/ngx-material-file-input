@@ -17,33 +17,10 @@ jobs:
         with:
           node-version: 16
       - run: npm ci --no-audit
-      # Retrieve all versions
-      - name: Get current lib version
-        id: lib_version
-        uses: martinbeentjes/npm-get-version-action@v1.2.3
-        with:
-          path: libs/material-file-input
-      - name: Get current monorepo version
-        id: repo_version
-        uses: martinbeentjes/npm-get-version-action@v1.2.3
-      - name: Get the new tag version
-        id: tag_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      # Apply new version
-      - name: Replace lib version
-        uses: jacobtomlinson/gha-find-replace@2.0.0
-        with:
-          find: 'version: "${{ steps.lib_version.outputs.current-version }}'
-          replace: 'version: "${{ steps.tag_version.outputs.VERSION }}'
-      - name: Set version for monorepo root
-        run: npm --no-git-tag-version version "${{ steps.tag_version.outputs.VERSION }}"
-
-      # - run: npm run clear
       - run: npm run build:lib
       - name: Publish to npm
         uses: JS-DevTools/npm-publish@v1
         with:
-          dry-run: true
           token: ${{ secrets.NPM_TOKEN }}
 
   create-release:
