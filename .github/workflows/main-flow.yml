@@ -2,7 +2,7 @@ name: Build and deploy demo app
 
 on:
   push:
-    branches: [master, chore/gh-actions]
+    branches: [master]
 
 jobs:
   check:
