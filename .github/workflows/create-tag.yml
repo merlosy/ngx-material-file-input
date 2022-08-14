@@ -46,7 +46,11 @@ jobs:
         with:
           find: 'version: "${{ steps.lib_version.outputs.current-version }}'
           replace: 'version: "${{ steps.repo_version.outputs.current-version }}'
-      # Apply changes
+      # Apply changes > Git
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
       - run: git add package.json package-lock.json libs/material-file-input/package.json
       - run: git commit -m "Release version ${{ steps.repo_version.outputs.current-version }}"
       - run: git tag -a "v${{ steps.repo_version.outputs.current-version }}" -m "Tag version ${{ steps.repo_version.outputs.current-version }}"
