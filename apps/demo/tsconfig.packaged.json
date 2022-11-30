@@ -1,13 +1,10 @@
 {
   "extends": "../../tsconfig.packaged.json",
   "compilerOptions": {
-    "outDir": "../../dist/apps/demo-packaged"
+    "outDir": "../../dist/apps/demo-packaged",
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "**/*.d.ts"
-  ]
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["**/*.d.ts"]
 }
