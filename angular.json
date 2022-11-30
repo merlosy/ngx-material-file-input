@@ -7,10 +7,10 @@
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
-      "generators": {},
-      "targets": {
+      "schematics": {},
+      "architect": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/demo",
@@ -57,7 +57,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "demo:build:production"
@@ -69,19 +69,19 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "demo:build"
           }
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/demo/src/**/*.ts", "apps/demo/src/**/*.html"]
           }
         },
         "test": {
-          "executor": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/demo/src/test.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -91,7 +91,7 @@
             "scripts": [],
             "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"]
           },
-          "outputs": ["coverage/apps/demo"]
+          "outputs": ["{workspaceRoot}/coverage/apps/demo"]
         }
       },
       "tags": []
@@ -100,9 +100,9 @@
       "root": "apps/demo-e2e",
       "sourceRoot": "apps/demo-e2e/src",
       "projectType": "application",
-      "targets": {
+      "architect": {
         "e2e": {
-          "executor": "@nrwl/cypress:cypress",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/demo-e2e/cypress.json",
             "devServerTarget": "demo:serve:development"
@@ -114,7 +114,7 @@
           }
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/demo-e2e/**/*.{js,ts}"]
@@ -129,10 +129,10 @@
       "sourceRoot": "apps/demo/src",
       "projectType": "application",
       "prefix": "app",
-      "generators": {},
-      "targets": {
+      "schematics": {},
+      "architect": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/demo-packaged",
             "index": "apps/demo/src/index.html",
@@ -176,7 +176,7 @@
           "outputs": ["{options.outputPath}"]
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "demo-packaged:build"
           },
@@ -187,13 +187,13 @@
           }
         },
         "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "demo-packaged:build"
           }
         },
         "test": {
-          "executor": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "apps/demo/src/../../../test.js",
             "polyfills": "apps/demo/src/polyfills.ts",
@@ -203,7 +203,7 @@
             "styles": ["apps/demo/src/styles.scss"],
             "assets": ["apps/demo/src/assets", "apps/demo/src/favicon.ico"]
           },
-          "outputs": ["coverage/apps/demo-packaged"]
+          "outputs": ["{workspaceRoot}/coverage/apps/demo-packaged"]
         }
       },
       "tags": []
@@ -212,9 +212,9 @@
       "root": "libs/material-file-input",
       "sourceRoot": "libs/material-file-input/src",
       "projectType": "library",
-      "targets": {
+      "architect": {
         "build": {
-          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/material-file-input/tsconfig.lib.json",
             "project": "libs/material-file-input/ng-package.json"
@@ -227,16 +227,16 @@
           }
         },
         "test": {
-          "executor": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "libs/material-file-input/src/test.ts",
             "tsConfig": "libs/material-file-input/tsconfig.spec.json",
             "karmaConfig": "libs/material-file-input/karma.conf.js"
           },
-          "outputs": ["coverage/libs/material-file-input"]
+          "outputs": ["{workspaceRoot}/coverage/libs/material-file-input"]
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/material-file-input/src/**/*.ts", "libs/material-file-input/src/**/*.html"]
           }
