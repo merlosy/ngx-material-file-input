@@ -1,0 +1,35 @@
+{
+  "sourceRoot": "libs/material-file-input/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "tsConfig": "libs/material-file-input/tsconfig.lib.json",
+        "project": "libs/material-file-input/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "project": "libs/material-file-input/ng-package.prod.json",
+          "tsConfig": "libs/material-file-input/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/material-file-input/src/test.ts",
+        "tsConfig": "libs/material-file-input/tsconfig.spec.json",
+        "karmaConfig": "libs/material-file-input/karma.conf.js"
+      },
+      "outputs": ["coverage/libs/material-file-input"]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/material-file-input/src/**/*.ts", "libs/material-file-input/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
