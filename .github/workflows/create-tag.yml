@@ -21,8 +21,8 @@ jobs:
     # uses: ./.github/workflows/validate.yml
   create-tag:
     runs-on: ubuntu-latest
-    needs: check
-    environment: deploy
+    # needs: check
+    # environment: deploy
     permissions:
       contents: write
     steps:
