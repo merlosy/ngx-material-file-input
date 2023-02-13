@@ -38,26 +38,28 @@ jobs:
       - name: Set version for monorepo root
         run: npm --no-git-tag-version version "${{ github.event.inputs.increment }}"
       - name: Get newly set monorepo version
-        id: repo_version
+        id: repo-version
         uses: martinbeentjes/npm-get-version-action@main
-      - run: echo "${{ steps.repo_version.outputs.current-version }}"
+      - run: echo "${{ steps.repo-version.outputs.current-version }}"
       - name: Get current lib version
-        id: lib_version
+        id: lib-version
         uses: martinbeentjes/npm-get-version-action@main
         with:
           path: libs/material-file-input
-      - run: echo "${{ steps.lib_version.outputs.current-version }}"
+      - run: echo "${{ steps.lib-version.outputs.current-version }}"
       - name: Replace lib version with new
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          find: 'version: "${{ steps.lib_version.outputs.current-version }}'
-          replace: 'version: "${{ steps.repo_version.outputs.current-version }}'
+          find: 'version: "${{ steps.lib-version.outputs.current-version }}'
+          replace: 'version: "${{ steps.repo-version.outputs.current-version }}'
       # Apply changes > Git
       - name: Setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - run: git add package.json package-lock.json libs/material-file-input/package.json
-      - run: git commit -m "Release version ${{ steps.repo_version.outputs.current-version }}"
-      - run: git tag -a "v${{ steps.repo_version.outputs.current-version }}" -m "Tag version ${{ steps.repo_version.outputs.current-version }}"
-      - run: git push --tags
+      - name: Commit changes with tag
+        run: |
+          git add package.json package-lock.json libs/material-file-input/package.json
+          git commit -m "Release version ${{ steps.repo-version.outputs.current-version }}"
+          git tag -a "v${{ steps.repo-version.outputs.current-version }}" -m "Tag version ${{ steps.repo-version.outputs.current-version }}"
+          git push --tags
