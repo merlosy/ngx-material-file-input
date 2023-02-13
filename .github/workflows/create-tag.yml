@@ -61,5 +61,6 @@ jobs:
         run: |
           git add package.json package-lock.json libs/material-file-input/package.json
           git commit -m "Release version ${{ steps.repo-version.outputs.current-version }}"
+          git push
           git tag -a "v${{ steps.repo-version.outputs.current-version }}" -m "Tag version ${{ steps.repo-version.outputs.current-version }}"
           git push --tags
