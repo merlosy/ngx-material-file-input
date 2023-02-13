@@ -37,21 +37,14 @@ jobs:
       # Compute new version for monorepo (not tagged)
       - name: Set version for monorepo root
         run: npm --no-git-tag-version version "${{ github.event.inputs.increment }}"
+      - name: Set version for library
+        run: |
+          cd libs/material-file-input/
+          npm --no-git-tag-version version "${{ github.event.inputs.increment }}"
       - name: Get newly set monorepo version
         id: repo-version
         uses: martinbeentjes/npm-get-version-action@main
       - run: echo "${{ steps.repo-version.outputs.current-version }}"
-      - name: Get current lib version
-        id: lib-version
-        uses: martinbeentjes/npm-get-version-action@main
-        with:
-          path: libs/material-file-input
-      - run: echo "${{ steps.lib-version.outputs.current-version }}"
-      - name: Replace lib version with new
-        uses: jacobtomlinson/gha-find-replace@2.0.0
-        with:
-          find: 'version: "${{ steps.lib-version.outputs.current-version }}'
-          replace: 'version: "${{ steps.repo-version.outputs.current-version }}'
       # Apply changes > Git
       - name: Setup git config
         run: |

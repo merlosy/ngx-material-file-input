@@ -8,9 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment: production
+    environment: deploy
     # if Running on the default branch
-    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    if: github.ref_name == format('refs/heads/{0}', github.event.repository.default_branch)
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,14 +19,19 @@ jobs:
       - run: npm ci --no-audit
       - run: npm run build:lib
       - name: Publish to npm
+        id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          dry-run: true
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
   create-release:
     runs-on: ubuntu-latest
     # if Running on the default branch
-    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    if: github.ref_name == format('refs/heads/{0}', github.event.repository.default_branch)
     permissions:
       contents: write
     steps:
