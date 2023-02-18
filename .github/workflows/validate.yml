@@ -1,10 +1,10 @@
 name: Validate
 
 on:
-  # pull_request:
-  #   branches: [master]
-  # push:
-  #   branches: ['*']
+  pull_request:
+    branches: [master]
+  push:
+    branches: ['*']
   workflow_call:
 
 jobs:

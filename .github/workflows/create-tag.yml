@@ -1,4 +1,4 @@
-name: Create new tag debug
+name: Create new tag
 
 on:
   workflow_dispatch:
@@ -17,11 +17,11 @@ on:
           - major
 
 jobs:
-  # check:
-    # uses: ./.github/workflows/validate.yml
+  check:
+    uses: ./.github/workflows/validate.yml
   create-tag:
     runs-on: ubuntu-latest
-    # needs: check
+    needs: check
     environment: deploy # env needed to access PAT
     permissions:
       contents: write
