@@ -22,12 +22,13 @@ jobs:
   create-tag:
     runs-on: ubuntu-latest
     needs: check
-    environment: deploy
+    environment: deploy # env needed to access PAT
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.head_ref }}
           token: ${{ secrets.PAT }}
           fetch-depth: 0
       - uses: actions/setup-node@v3
@@ -36,25 +37,23 @@ jobs:
       # Compute new version for monorepo (not tagged)
       - name: Set version for monorepo root
         run: npm --no-git-tag-version version "${{ github.event.inputs.increment }}"
+      - name: Set version for library
+        run: |
+          cd libs/material-file-input/
+          npm --no-git-tag-version version "${{ github.event.inputs.increment }}"
       - name: Get newly set monorepo version
-        id: repo_version
-        uses: martinbeentjes/npm-get-version-action@v1.2.3
-      - name: Get current lib version
-        id: lib_version
-        uses: martinbeentjes/npm-get-version-action@v1.2.3
-        with:
-          path: libs/material-file-input
-      - name: Replace lib version with new
-        uses: jacobtomlinson/gha-find-replace@2.0.0
-        with:
-          find: 'version: "${{ steps.lib_version.outputs.current-version }}'
-          replace: 'version: "${{ steps.repo_version.outputs.current-version }}'
+        id: repo-version
+        uses: martinbeentjes/npm-get-version-action@main
+      - run: echo "${{ steps.repo-version.outputs.current-version }}"
       # Apply changes > Git
       - name: Setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - run: git add package.json package-lock.json libs/material-file-input/package.json
-      - run: git commit -m "Release version ${{ steps.repo_version.outputs.current-version }}"
-      - run: git tag -a "v${{ steps.repo_version.outputs.current-version }}" -m "Tag version ${{ steps.repo_version.outputs.current-version }}"
-      - run: git push --tags
+      - name: Commit changes with tag
+        run: |
+          git add package.json package-lock.json libs/material-file-input/package.json
+          git commit -m "Release version ${{ steps.repo-version.outputs.current-version }}"
+          git push
+          git tag -a "v${{ steps.repo-version.outputs.current-version }}" -m "Tag version ${{ steps.repo-version.outputs.current-version }}"
+          git push --tags
