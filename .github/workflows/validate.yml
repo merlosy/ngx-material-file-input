@@ -4,7 +4,9 @@ on:
   pull_request:
     branches: [master]
   push:
-    branches: ['*']
+    branches:
+      - "*"
+      - "!master" # Done through workflow call
   workflow_call:
 
 jobs:
