@@ -68,6 +68,7 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: ./dist/material-file-input/package.json
           # dry-run: true
       - if: steps.publish.outputs.type != 'none'
         run: |
