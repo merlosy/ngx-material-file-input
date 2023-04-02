@@ -60,7 +60,9 @@ jobs:
           git tag -a "v${{ steps.repo-version.outputs.current-version }}" -m "Tag version ${{ steps.repo-version.outputs.current-version }}"
           git push --tags
       - name: Build library for publish
-        run: npm run build:lib
+        run: |
+          npm ci --no-audit
+          npm run build:lib
       - name: Publish to npm
         id: publish
         uses: JS-DevTools/npm-publish@v1
