@@ -60,6 +60,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    needs: create-tag
     environment: deploy
     # if Running on the default branch
     if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
@@ -81,6 +82,7 @@ jobs:
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
   create-release:
+    needs: create-tag
     runs-on: ubuntu-latest
     # if Running on the default branch
     if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
